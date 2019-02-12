@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="order" type="com.example.administrator.doctorClient.data.order.Order"/>
+    </data>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+        <androidx.appcompat.widget.Toolbar style="@style/toolbar_style" android:id="@+id/toolbar">
+        </androidx.appcompat.widget.Toolbar>
+        <ScrollView android:layout_width="match_parent"
+                    android:layout_below="@+id/toolbar"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_above="@+id/bottom_layout"
+                    android:layout_height="match_parent">
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:textColor="#000000"
+                              android:text="姓 名: "
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:textColor="#000000"
+                              android:text="@{order.name}"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="wrap_content"
+                              android:textColor="#000000"
+                              android:text="预定时间: "
+                              android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="wrap_content"
+                              android:textColor="#000000"
+                              orderTime="@{order.orderTime}"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <View android:layout_width="match_parent"
+                      android:background="@color/dividingLine"
+                      android:layout_height="1dp"/>
+                <View android:layout_width="match_parent"
+                      android:background="@color/dividingLine"
+                      android:layout_marginTop="10dp"
+                      android:layout_height="1dp"/>
+                <TextView android:layout_width="wrap_content"
+                          android:text="订单进度"
+                          android:textColor="#000000"
+                          android:layout_height="wrap_content"/>
+                <com.example.administrator.doctorClient.custom.OrderScheduleView
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/order_schedule"/>
+                <View android:layout_width="match_parent"
+                      android:background="@color/dividingLine"
+                      android:layout_height="1dp"/>
+                <View android:layout_width="match_parent"
+                      android:layout_marginTop="10dp"
+                      android:background="@color/dividingLine"
+                      android:layout_height="1dp"/>
+                <TextView android:layout_width="match_parent"
+                          android:text="订单描述"
+                          android:textColor="#000000"
+                          android:textSize="15sp"
+                          android:layout_marginLeft="30dp"
+                          android:layout_height="wrap_content"/>
+                <TextView android:layout_width="match_parent"
+                          android:gravity="center_horizontal"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginTop="5dp"
+                          android:text="@{order.description}"
+                          android:layout_marginRight="10dp"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </ScrollView>
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="horizontal"
+                      android:id="@+id/bottom_layout"
+                      android:layout_marginBottom="5dp"
+                      android:layout_alignParentBottom="true"
+                      android:layout_height="wrap_content">
+            <TextView
+                    android:text="取消订单"
+                    android:layout_width="0dp"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cancel" />
+            <TextView
+                    android:text="发送消息"
+                    android:layout_width="0dp"
+                    android:textColor="#000000"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/send_message" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/start_nav" app:startDestination="@id/startFragment2">
+
+    <fragment android:id="@+id/startFragment2" android:name="com.example.administrator.doctorClient.view.StartFragment"
+              android:label="StartFragment">
+        <action android:id="@+id/action_startFragment2_to_logInFragment" app:destination="@id/logInFragment"/>
+    </fragment>
+    <fragment android:id="@+id/logInFragment" android:name="com.example.administrator.doctorClient.view.LogInFragment"
+              android:label="LogInFragment">
+        <action android:id="@+id/action_logInFragment_to_registerFragment" app:destination="@id/registerFragment"/>
+    </fragment>
+    <fragment android:id="@+id/registerFragment"
+              android:name="com.example.administrator.doctorClient.view.RegisterFragment"
+              android:label="RegisterFragment"/>
+</navigation>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable name="message" type="com.example.administrator.doctorClient.data.message.Message"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="15dp"
+                  android:layout_marginTop="5dp"
+                  android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/chat_left_tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                time="@{message.createAt}"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="2dp">
+
+
+            <ImageView
+                    android:id="@+id/chat_left_iv_avatar"
+                    style="@style/ChatAvatar"
+                    patient_image="@{message.avatar}"
+                    android:scaleType="centerCrop"/>
+            <ImageView android:layout_width="wrap_content"
+                      android:id="@+id/voice_text"
+                       android:src="@drawable/voice_left_pic"
+                       android:scaleType="centerInside"
+                      android:gravity="center"
+                      android:background="@drawable/left_bg"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      voiceTime="@{message.voiceTime}"
+                      android:gravity="center_vertical"
+                      android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <TextView
+                android:id="@+id/chat_left_tv_name"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:gravity="left"
+                android:singleLine="true"/>
+    </LinearLayout>
+</layout>

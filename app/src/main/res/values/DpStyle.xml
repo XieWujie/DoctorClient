@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bottom_sheet_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+    <style name="me_item_style">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/meItemBackground</item>
+    </style>
+    <style parent="AppTheme" name="RegTheme">
+    <item name="colorPrimaryDark">@null</item>
+</style>
+    <!-- Avatar -->
+    <style name="ChatAvatar">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!--BigImage-->
+    <style name="bigImage_dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否启用标题栏 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 是否使用背景半透明 -->
+    </style>
+
+    <style name="progressBar_dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/MyEditText</item>
+        <item name="colorControlActivated">@color/MyEditText</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+    <declare-styleable name="ScrollLayout">
+    <attr name="minOffset" format="dimension"/>
+    <attr name="maxOffset" format="dimension"/>
+    <attr name="exitOffset" format="dimension"/>
+    <attr name="state">
+    <flag name="open" value="0x0"/>
+    <flag name="close" value="0x1"/>
+    <flag name="exit" value="0x2"/>
+</attr>
+    <attr name="allowHorizontalScroll" format="boolean"/>
+    <attr name="isSupportExit" format="boolean"/>
+</declare-styleable>
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="toolbar_blue" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/blue_toolbar</item>
+    </style>
+    <style name="my_rating" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="android:minHeight">18dp</item>
+        <item name="android:maxHeight">18dp</item>
+    </style>
+</resources>

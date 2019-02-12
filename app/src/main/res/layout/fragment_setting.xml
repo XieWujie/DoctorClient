@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="presenter" type="com.example.administrator.doctorClient.presenter.SettingPresenter"/>
+    </data>
+<com.example.administrator.doctorClient.custom.DragLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                android:orientation="vertical"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::acountAndSafety}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="账号和安全"
+                  android:textSize="15sp"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::switchLanguage}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="切换语言"
+                  android:textSize="15sp"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:background="@color/meItemBackground"
+                        android:onClick="@{presenter::clearCache}"
+                        android:layout_height="50dp">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_centerVertical="true"
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/meItem"
+                      android:text="清除缓存"
+                      android:textSize="15sp"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:layout_alignParentRight="true"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                       android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:background="@color/meItemBackground"
+                        android:onClick="@{presenter::userGuide}"
+                        android:layout_height="50dp">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_centerVertical="true"
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/meItem"
+                      android:text="用户指南"
+                      android:textSize="15sp"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:layout_alignParentRight="true"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                       android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:background="@color/meItemBackground"
+                        android:onClick="@{presenter::feedback}"
+                        android:layout_height="50dp">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_centerVertical="true"
+                      android:layout_marginLeft="10dp"
+                      android:textColor="@color/meItem"
+                      android:text="问题反馈"
+                      android:textSize="15sp"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:layout_alignParentRight="true"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                       android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::versionUpdate}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="版本更新"
+                  android:textSize="15sp"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <Button android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:text="退出登陆"
+            android:onClick="@{presenter::logout}"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_height="60dp"/>
+</com.example.administrator.doctorClient.custom.DragLinearLayout>
+</layout>

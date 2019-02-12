@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="meItem">#000000</color>
+    <color name="meItemBackground">#FFFFFF</color>
+    <color name="dividingLine">#33999999</color>
+    <color name="meText">#000000</color>
+    <color name="chatActivity">#ff303030</color>
+    <color name="MyEditText">#ff333333</color>
+    <color name="line_color">#eaeaea</color>
+    <color name="hint_color">#ababab</color>
+    <color name="edit_color">#dedede</color>
+    <color name="dark_text">#000000</color>
+    <color name="login_color">#2ba4f1</color>
+    <color name="white_text">#e2dede</color>
+    <color name="back_background_color">#fdf6f0</color>
+    <color name="content_white">#fff2f3f5</color>
+    <color name="blue_toolbar">#ff788efa</color>
+</resources>

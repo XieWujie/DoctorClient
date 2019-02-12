@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="position" type="com.example.administrator.doctorClient.data.Position"/>
+    </data>
+  <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+      <androidx.appcompat.widget.Toolbar style="@style/toolbar_style" android:id="@+id/toolbar">
+
+      </androidx.appcompat.widget.Toolbar>
+      <fragment
+              android:name="androidx.navigation.fragment.NavHostFragment"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" app:navGraph="@navigation/main_nav" app:defaultNavHost="true"
+              android:layout_below="@+id/toolbar"
+              android:layout_above="@+id/bottom_layout"
+              android:layout_alignParentBottom="true" android:id="@+id/main_fragment" />
+
+      <com.google.android.material.bottomnavigation.BottomNavigationView android:layout_width="match_parent"
+                                                             android:layout_alignParentBottom="true"
+                                                             android:id="@+id/bottom_layout"
+                                                             app:menu="@menu/main_menu"
+                                                             android:layout_height="60dp">
+
+      </com.google.android.material.bottomnavigation.BottomNavigationView>
+  </RelativeLayout>
+</layout>

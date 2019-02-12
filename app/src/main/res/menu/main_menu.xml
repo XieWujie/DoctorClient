@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="消息"
+          android:icon="@drawable/conversation_icon"
+          android:id="@+id/messageListFragment">
+    </item>
+    <item android:title="订单" android:id="@+id/orderFragment" android:icon="@drawable/order_icon"/>
+    <item android:title="我的" android:id="@+id/meFragment" android:icon="@drawable/me_icon"/>
+</menu>

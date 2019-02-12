@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/setting_nav" app:startDestination="@id/settingFragment">
+
+    <fragment android:id="@+id/settingFragment"
+              android:name="com.example.administrator.doctorClient.view.SettingFragment"
+              android:label="SettingFragment">
+        <action android:id="@+id/action_settingFragment_to_acountAndSafetyFragment"
+                app:destination="@id/acountAndSafetyFragment"/>
+    </fragment>
+    <fragment android:id="@+id/acountAndSafetyFragment"
+              android:name="com.example.administrator.doctorClient.view.AcountAndSafetyFragment"
+              android:label="AcountAndSafetyFragment"/>
+</navigation>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+   <data>
+       <variable name="presenter" type="com.example.administrator.doctorClient.presenter.MePresenter"/>
+   </data>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                                android:orientation="vertical"
+                                                                android:background="@color/meItemBackground"
+                                                                android:layout_width="match_parent"
+                                                                android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:background="@color/blue_toolbar"
+                    android:layout_height="155dp">
+        <de.hdodenhof.circleimageview.CircleImageView android:layout_width="60dp"
+                                                      android:id="@+id/avatar"
+                                                      android:layout_centerHorizontal="true"
+                                                      android:layout_marginTop="15dp"
+                   imageSrc="@{presenter.avatar}"
+                   android:layout_height="60dp"/>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_centerHorizontal="true"
+                      android:layout_below="@id/avatar"
+                      android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                      android:gravity="center"
+                      android:text="@{presenter.acount}"
+                      android:textColor="@android:color/white"
+                      android:layout_marginLeft="3dp"
+                      android:layout_centerVertical="true"
+                      android:layout_toRightOf="@id/avatar"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="2dp"/>
+    <RelativeLayout   android:onClick="@{presenter::prove}"
+                      style="@style/me_item_style">
+        <TextView android:layout_width="wrap_content"
+                  android:textColor="@color/meText"
+                  android:layout_marginLeft="10dp"
+                  android:layout_centerVertical="true"
+                  android:text="医生资格证明"
+                  android:layout_height="wrap_content"/>
+        <LinearLayout android:layout_width="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_centerVertical="true"
+                      android:layout_alignParentRight="true"
+                      android:layout_height="wrap_content">
+            <TextView android:layout_width="wrap_content"
+                      android:text="未证明"
+                      android:layout_marginRight="5dp"
+                      android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                       android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::edit}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="编辑资料"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::comment}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="对我的评论"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::clickCustomer}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="客服"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:background="@color/meItemBackground"
+                    android:onClick="@{presenter::clickSetting}"
+                    android:layout_height="50dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_centerVertical="true"
+                  android:layout_marginLeft="10dp"
+                  android:textColor="@color/meItem"
+                  android:text="设置"
+                  android:layout_height="wrap_content"/>
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="5dp"
+                   android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                   android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+
+
+</LinearLayout>
+</layout>

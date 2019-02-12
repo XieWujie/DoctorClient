@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="registerhelper" type="com.example.administrator.doctorClient.presenter.RegisterPresenter"/>
+    </data>
+
+    <RelativeLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_test"/>
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#4d4c4c"
+                android:alpha="0.8"/>
+
+        <!--android:fitsSystemWindows="true"-->
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/RegTheme"
+                app:navigationIcon="@drawable/reg_back"
+                android:fitsSystemWindows="true"/>
+
+        <LinearLayout
+                android:id="@+id/reg_user"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="100dp"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:id="@+id/reg_user_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/reg_username"/>
+
+            <EditText
+                    android:id="@+id/reg_user_edit"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="9dp"
+                    android:background="@null"
+                    android:hint="请输入您的账号"
+                    android:text="@={registerhelper.userName}"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/normal_text"
+                    android:inputType="text"
+                    android:maxLength="11"/>
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/reg_line1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginRight="38dp"
+                android:layout_below="@+id/reg_user"
+                android:background="@color/line_color" />
+
+        <LinearLayout
+                android:id="@+id/reg_verification"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_below="@id/reg_line1">
+
+            <ImageView
+                    android:id="@+id/reg_verification_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/reg_email"/>
+
+            <EditText
+                    android:id="@+id/reg_verification_edit"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="请输入邮箱"
+                    android:text="@={registerhelper.mailBox}"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/normal_text"
+                    android:inputType="text"/>
+
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/reg_line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginRight="38dp"
+                android:layout_below="@+id/reg_verification"
+                android:background="@color/line_color" />
+
+        <LinearLayout
+                android:id="@+id/reg_pass"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/reg_line2">
+
+            <ImageView
+                    android:id="@+id/reg_pass_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/reg_password"/>
+
+            <EditText
+                    android:id="@+id/reg_pass_edit"
+                    android:layout_width="220dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@null"
+                    android:text="@={registerhelper.firstPassword}"
+                    android:hint="6-12位字母加数字的组合密码"
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="@dimen/normal_text"
+                    android:inputType="textPassword"
+                    android:maxLength="11"/>
+
+            <ImageView
+                    android:id="@+id/reg_pass_visible_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/reg_pass_invisible"/>
+
+        </LinearLayout>
+
+        <View
+                android:id="@+id/reg_line3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginRight="38dp"
+                android:layout_below="@+id/reg_pass"
+                android:background="@color/line_color" />
+
+        <Button
+                android:id="@+id/reg_button"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_below="@id/reg_line3"
+                android:text="注   册"
+                android:onClick="@{registerhelper::register}"
+                android:textSize="@dimen/big_text"
+                android:textColor="@color/white_text"
+                android:background="#f2a465"/>
+
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable name="message" type="com.example.administrator.doctorClient.data.message.Message"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="15dp"
+                  android:layout_marginTop="5dp"
+                  android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/chat_left_tv_time"
+                time="@{message.createAt}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp">
+
+
+            <ImageView
+                    android:id="@+id/chat_left_iv_avatar"
+                    style="@style/ChatAvatar"
+                    patient_image="@{message.avatar}"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="2dp"/>
+
+            <ImageView android:id="@+id/chat_left_layout_content"
+                       android:layout_width="200dp"
+                       imageSrc="@{message.message}"
+                       android:scaleType="fitStart"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

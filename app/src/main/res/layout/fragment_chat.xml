@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:layout_width="match_parent"
+                                                           android:layout_alignParentTop="true"
+                                                           android:id="@+id/fresh_layout"
+                                                           android:background="#fff2f3f5"
+                                                           android:layout_above="@id/chat_bottom"
+                                                           android:layout_height="match_parent">
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_rc_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <com.example.administrator.doctorClient.custom.ButtomInput android:layout_width="match_parent"
+                                                               android:layout_alignParentBottom="true"
+                                                               android:id="@+id/chat_bottom"
+                                                               android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
+</layout>
