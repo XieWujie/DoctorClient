@@ -27,10 +27,14 @@
                       android:gravity="center"
                       android:text="@{presenter.acount}"
                       android:textColor="@android:color/white"
-                      android:layout_marginLeft="3dp"
                       android:layout_centerVertical="true"
                       android:layout_toRightOf="@id/avatar"
                       android:layout_height="wrap_content"/>
+            <ImageView android:layout_width="18dp"
+                       android:layout_marginLeft="5dp"
+                       android:onClick="@{presenter::edit}"
+                       android:src="@drawable/ic_edit_white_24dp"
+                       android:layout_height="18dp"/>
         </LinearLayout>
     </RelativeLayout>
     <View android:layout_width="match_parent"
@@ -123,6 +127,10 @@
                    android:layout_height="wrap_content"/>
     </RelativeLayout>
     <View android:layout_width="match_parent"
+          android:background="@color/dividingLine"
+          android:layout_height="1dp"/>
+    <View android:layout_width="match_parent"
+          android:layout_marginTop="12dp"
           android:background="@color/dividingLine"
           android:layout_height="1dp"/>
     <RelativeLayout android:layout_width="match_parent"

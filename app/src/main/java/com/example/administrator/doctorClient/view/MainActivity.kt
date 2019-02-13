@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.databinding.ActivityMainBinding
+import com.example.administrator.doctorClient.utilities.Util
 
 class MainActivity : AppCompatActivity(){
 
@@ -19,5 +20,8 @@ class MainActivity : AppCompatActivity(){
         binding.bottomLayout.setupWithNavController(findNavController(R.id.main_fragment))
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setTitleTextColor(Color.WHITE)
+        val color = resources.getColor(R.color.blue_toolbar)
+        Util.setStatusBar(this,color)
+
     }
 }

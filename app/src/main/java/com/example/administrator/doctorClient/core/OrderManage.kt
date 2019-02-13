@@ -18,31 +18,6 @@ object OrderManage{
 
     private var respository:OrderRepository? = null
 
-    fun createAnOrder(context: Context, user: User, patient: Patient, time:Long, description:String, createCallback:(e:Exception?)->Unit){
-        if (respository == null){
-            initRepository(context)
-        }
-        val o = AVObject.create("Order")
-        o.put("doctorId",patient.id)
-        o.put("patientId",user.userId)
-        o.put("description",description)
-        o.put("time",time)
-        o.put("state", NOT_GENERATED)
-        o.saveInBackground(object :SaveCallback(){
-            override fun done(e: AVException?) {
-                if (e == null){
-                    val order = Order(o.objectId,user.userId,patient.id,time,description,
-                        NOT_GENERATED,patient.avatar,patient.name,0f,
-                        0,0,o.createdAt.time,0)
-                    respository?.addOrder(order)
-                    MessageManage.sendOrderMessage(patient.id,o.objectId)
-                    createCallback(null)
-                }else{
-                    createCallback(e)
-                }
-            }
-        })
-    }
 
     private fun initRepository(context: Context){
         if (respository == null)

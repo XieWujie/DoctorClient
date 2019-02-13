@@ -3,6 +3,8 @@ package com.example.administrator.doctorClient.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.OrderManage
@@ -53,28 +55,6 @@ class OrderDetailActivity : AppCompatActivity() {
     }
 
     fun eventHandle(order: Order){
-        if (order.state == NOT_EVALUATION){
-            binding.cancel.text = "评价"
-            binding.cancel.setOnClickListener {
-                val intent = Intent(this,CommentActivity::class.java)
-                intent.putExtra("order",order)
-                startActivity(intent)
-            }
-        }else {
-            binding.cancel.setOnClickListener {
-                val dialog = Util.createProgressDialog(this)
-                dialog.show()
-                OrderManage.cancelOrder(order) {
-                    dialog.dismiss()
-                    if (it == null) {
-                        Util.log(binding.root, "取消订单成功")
-                        finish()
-                    } else {
-                        Util.log(binding.root, "取消订单失败")
-                    }
-                }
-            }
-        }
         binding.sendMessage.setOnClickListener {
             val intent = Intent(this,ChatActivity::class.java)
             intent.putExtra(CONVERSATION__NAME,order.name)
@@ -84,6 +64,43 @@ class OrderDetailActivity : AppCompatActivity() {
         }
         binding.toolbar.setNavigationOnClickListener {
             finish()
+        }
+        when(order.state){
+            NOT_GENERATED->{
+                val agree = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
+                val notAgree = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
+                agree.text = "同意"
+                notAgree.text = "不同意"
+                binding.bottomLayout.addView(notAgree)
+                binding.bottomLayout.addView(agree)
+                agree.setOnClickListener {
+                    val dialog = Util.createProgressDialog(this)
+                    dialog.show()
+                    OrderManage.agreeOrder(this,order){e->
+                        dialog.dismiss()
+                        if (e == null){
+                            binding.bottomLayout.removeView(notAgree)
+                            agree.text = "已同意"
+                            agree.isClickable = false
+                        }else{
+                            Util.log(binding.root,e.message)
+                        }
+                    }
+                }
+                notAgree.setOnClickListener {
+                    val dialog = Util.createProgressDialog(this)
+                    dialog.show()
+                    OrderManage.cancelOrder(order){e->
+                        dialog.dismiss()
+                        if (e == null){
+                            binding.bottomLayout.removeView(agree)
+                            binding.bottomLayout.removeView(notAgree)
+                        }else{
+                            Util.log(binding.root,e.message)
+                        }
+                    }
+                }
+            }
         }
     }
 }

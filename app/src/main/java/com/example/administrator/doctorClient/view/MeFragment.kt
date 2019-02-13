@@ -88,7 +88,7 @@ class MeFragment:Fragment(){
         if (realPath == null){
             Util.log(binding.root,"获取图片失败")
         }else {
-            UserManage.setAvatar(realPath) {
+            UserManage.setAvatar(requireContext(),realPath) {
                 if (it == null){
                     Util.log(binding.root,"头像更新成功")
                 }else{

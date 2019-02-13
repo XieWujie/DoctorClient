@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Color
 import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
@@ -15,6 +16,11 @@ import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.UserManage
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
+import android.graphics.Color.parseColor
+import android.view.WindowManager
+import android.os.Build
+
+
 
 object Util{
     fun createProgressDialog(context: Context): Dialog {
@@ -106,6 +112,15 @@ object Util{
         if (view != null) {
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    fun setStatusBar(activity: Activity,color:Int) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = activity.window
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = color
         }
     }
 }

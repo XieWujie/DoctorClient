@@ -22,6 +22,9 @@ class ProveActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityProveBinding
     private var image = -1
+    private var prove1:String? = null
+    private var prove2:String? = null
+    private var prove3:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,15 @@ class ProveActivity : AppCompatActivity() {
             finish()
         }
         binding.save.setOnClickListener {
-
+            if (prove1!=null && prove2!=null && prove3!=null){
+                UserManage.prove(this,prove1!!,prove2!!,prove3!!){e->
+                    if (e == null){
+                        finish()
+                    }else{
+                        Util.log(binding.root,e!!.message)
+                    }
+                }
+            }
         }
     }
     private fun requestPermission() {
@@ -92,9 +103,18 @@ class ProveActivity : AppCompatActivity() {
             Util.log(binding.root,"获取图片失败")
         }else {
             when(image){
-                2->Glide.with(this).load(realPath).into(binding.imageView2)
-                3->Glide.with(this).load(realPath).into(binding.imageView3)
-                4->Glide.with(this).load(realPath).into(binding.imageView4)
+                2->{
+                    prove1 = realPath
+                    Glide.with(this).load(realPath).into(binding.imageView2)
+                }
+                3->{
+                    prove2 = realPath
+                    Glide.with(this).load(realPath).into(binding.imageView3)
+                }
+                4->{
+                    prove3 = realPath
+                    Glide.with(this).load(realPath).into(binding.imageView4)
+                }
             }
         }
     }
