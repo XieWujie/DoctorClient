@@ -2,6 +2,7 @@
 <layout>
    <data>
        <variable name="presenter" type="com.example.administrator.doctorClient.presenter.MePresenter"/>
+       <variable name="user" type="com.example.administrator.doctorClient.data.user.User"/>
    </data>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +18,7 @@
                                                       android:id="@+id/avatar"
                                                       android:layout_centerHorizontal="true"
                                                       android:layout_marginTop="15dp"
-                   imageSrc="@{presenter.avatar}"
+                   imageSrc="@{user.avatar}"
                    android:layout_height="60dp"/>
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_centerHorizontal="true"
@@ -25,7 +26,7 @@
                       android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
                       android:gravity="center"
-                      android:text="@{presenter.acount}"
+                      android:text="@{user.name}"
                       android:textColor="@android:color/white"
                       android:layout_centerVertical="true"
                       android:layout_toRightOf="@id/avatar"
@@ -54,7 +55,7 @@
                       android:layout_alignParentRight="true"
                       android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
-                      android:text="未证明"
+                      android:id="@+id/isProve"
                       android:layout_marginRight="5dp"
                       android:layout_height="wrap_content"/>
             <ImageView android:layout_width="wrap_content"

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.administrator.doctorClient.databinding.FragmentLoginBinding
 import com.example.administrator.doctorClient.presenter.LoginPresenter
+import com.example.administrator.doctorClient.utilities.USER_NAME
 
 class LogInFragment:Fragment(){
 
@@ -14,7 +15,9 @@ class LogInFragment:Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentLoginBinding.inflate(inflater, container,false)
-        binding.loginhelper = LoginPresenter("","")
+        val userName = arguments?.getString(USER_NAME)
+        val password = arguments?.getString("password")
+        binding.loginhelper = LoginPresenter(userName?:"",password?:"")
         return binding.root
     }
 }

@@ -54,8 +54,8 @@ object MessageManage{
         }
     }
 
-    fun sendOrderMessage(doctorId:String,orderId:String){
-        findConversation(doctorId) { conversation ->
+    fun sendOrderMessage(patientId:String,orderId:String){
+        findConversation(patientId) { conversation ->
             val m = OrderMessage()
             m.id = orderId
             conversation?.sendMessage(m, null)

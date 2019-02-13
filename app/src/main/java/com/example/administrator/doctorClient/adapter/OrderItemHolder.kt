@@ -24,9 +24,13 @@ class OrderItemHolder(private val binding:OrderListItemBinding):BaseHolder(bindi
                NOT_START->if (Util.getCurrentTimeStamp()<any.orderTime){
                    "未开始"
                }else{
+                   binding.cancel.visibility = View.VISIBLE
+                   binding.cancel.text = "确认支付"
                    "已开始"
                }
                STARTING->{
+                   binding.cancel.visibility = View.VISIBLE
+                   binding.cancel.text = "确认支付"
                    "已开始"
                }
                COMPLETE->{
@@ -67,6 +71,11 @@ class OrderItemHolder(private val binding:OrderListItemBinding):BaseHolder(bindi
                        OrderManage.agreeOrder(context,any){
 
                        }
+                    }
+                    "确认支付"->{
+                        OrderManage.endTreatment(context,any){
+
+                        }
                     }
                 }
             }

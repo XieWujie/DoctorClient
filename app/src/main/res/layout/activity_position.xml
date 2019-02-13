@@ -35,18 +35,29 @@
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
-                                                           android:background="#ffffff"
-                                                           android:layout_marginTop="15dp"
-                                                           android:layout_below="@+id/toolbar"
-                                                           android:id="@+id/edit_layout"
-                                                           android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text"
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/show"
+              android:layout_below="@+id/toolbar"
+              android:layout_marginTop="15dp"
+              android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
                 android:background="@null"
+                android:layout_below="@+id/show"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                               android:layout_marginBottom="70dp"
+                                               android:id="@+id/recyclerview"
+                                               android:layout_marginLeft="15dp"
+                                               android:layout_marginRight="15dp"
+                                               android:layout_below="@+id/search"
+                                               android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_alignParentBottom="true"

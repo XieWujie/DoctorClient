@@ -15,25 +15,24 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class OrderDetailActivity : AppCompatActivity() {
+class OrderDetailActivity : BaseActivity() {
 
     private lateinit var binding:ActivityOrderDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_order_detail)
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
+        setActionBar(binding.toolbar)
         val order = intent.getSerializableExtra("order")
         if (order is Order){
-            binding.order = order
-            eventHandle(order)
-            if (order.state == NOT_START&&Util.getCurrentTimeStamp()>order.orderTime){
-                initSchedule(order.copy(state = STARTING))
+            val newOrder =  if (order.state == NOT_START&&Util.getCurrentTimeStamp()>order.orderTime){
+                order.copy(state = STARTING)
             }else{
-                initSchedule(order)
+                order
             }
+            binding.order = newOrder
+            eventHandle(newOrder)
+            initSchedule(newOrder)
         }
         setTitle("订单详情")
     }
@@ -82,6 +81,7 @@ class OrderDetailActivity : AppCompatActivity() {
                             binding.bottomLayout.removeView(notAgree)
                             agree.text = "已同意"
                             agree.isClickable = false
+                            initSchedule(order)
                         }else{
                             Util.log(binding.root,e.message)
                         }
@@ -97,6 +97,21 @@ class OrderDetailActivity : AppCompatActivity() {
                             binding.bottomLayout.removeView(notAgree)
                         }else{
                             Util.log(binding.root,e.message)
+                        }
+                    }
+                }
+            }
+            STARTING->{
+                val button  = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
+                button.text = "确认支付"
+                binding.bottomLayout.addView(button)
+                button.setOnClickListener {
+                    OrderManage.endTreatment(this,order){e->
+                        if (e == null){
+                            button.text = "已确认"
+                            initSchedule(order)
+                        }else{
+                            Util.log(it,e.message)
                         }
                     }
                 }

@@ -2,13 +2,14 @@ package com.example.administrator.doctorClient.presenter
 
 
 import android.view.View
+import com.example.administrator.doctorClient.data.user.User
 import com.example.administrator.doctorClient.utilities.Util
 import com.example.administrator.doctorClient.view.EditListActivity
 import com.example.administrator.doctorClient.view.CommentActivity
 import com.example.administrator.doctorClient.view.ProveActivity
 import com.example.administrator.doctorClient.view.SettingActivity
 
-class MePresenter(var avatar:String? = null ,var acount:String = "登陆"){
+class MePresenter{
 
     fun prove(view:View){
         Util.toActivity<ProveActivity>(view.context)

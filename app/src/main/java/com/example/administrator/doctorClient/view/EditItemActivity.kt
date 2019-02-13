@@ -9,7 +9,7 @@ import com.example.administrator.doctorClient.databinding.ActivityEditItemBindin
 import com.example.administrator.doctorClient.utilities.USER_NAME
 import com.example.administrator.doctorClient.utilities.Util
 
-class EditItemActivity : AppCompatActivity() {
+class EditItemActivity : BaseActivity() {
 
     private lateinit var binding:ActivityEditItemBinding
 

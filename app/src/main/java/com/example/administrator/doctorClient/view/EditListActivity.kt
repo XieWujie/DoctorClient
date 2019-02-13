@@ -9,7 +9,7 @@ import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.databinding.ActivityEditListBinding
 import com.example.administrator.doctorClient.presenter.EditListPresenter
 
-class EditListActivity : AppCompatActivity() {
+class EditListActivity : BaseActivity(){
 
     private lateinit var binding:ActivityEditListBinding
 
@@ -17,7 +17,8 @@ class EditListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_edit_list)
         binding.presenter = EditListPresenter()
-        setSupportActionBar(binding.toolbar)
+        setActionBar(binding.toolbar)
+        setTitle("")
     }
 
     override fun onStart() {

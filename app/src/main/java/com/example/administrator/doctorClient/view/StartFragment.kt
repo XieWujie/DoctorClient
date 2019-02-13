@@ -19,6 +19,7 @@ import androidx.navigation.findNavController
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.MessageManage
 import com.example.administrator.doctorClient.core.UserManage
+import com.example.administrator.doctorClient.utilities.USER_NAME
 import com.example.administrator.doctorClient.utilities.ViewModelFactory
 import com.example.administrator.doctorClient.viewmodel.UserModel
 import com.google.android.material.snackbar.Snackbar
@@ -86,12 +87,26 @@ class StartFragment:Fragment(){
 
     private fun toNext(){
         model.lastUser?.observe(this, Observer {
-            if (it == null){
+            if (it == null ){
                 binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment)
-            }else {
-                UserManage.user = it
-                MessageManage.init(requireContext(), it)
-                toMainActivity()
+            }
+            else {
+                if (it.isLogout == true) {
+                    val bundle = Bundle()
+                    bundle.putString(USER_NAME, it.name)
+                    bundle.putString("password", it.password)
+                    binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment, bundle)
+                }else if (UserManage.user?.isLogout?:false == true){
+                    val user = UserManage.user!!
+                    val bundle = Bundle()
+                    bundle.putString(USER_NAME, user.name)
+                    bundle.putString("password", user.password)
+                    binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment, bundle)
+                } else {
+                    UserManage.user = it
+                    MessageManage.init(requireContext(), it)
+                    toMainActivity()
+                }
             }
         })?:toMainActivity()
     }

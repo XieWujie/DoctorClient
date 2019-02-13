@@ -14,7 +14,7 @@ import com.example.administrator.doctorClient.databinding.ActivityCommentBinding
 import com.example.administrator.doctorClient.utilities.ViewModelFactory
 import com.example.administrator.doctorClient.viewmodel.EvaluationModel
 
-class CommentActivity : AppCompatActivity() {
+class CommentActivity : BaseActivity() {
 
     private lateinit var binding:ActivityCommentBinding
     private lateinit var model:EvaluationModel
@@ -30,12 +30,7 @@ class CommentActivity : AppCompatActivity() {
     }
 
     fun initUI(){
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener {
-            finish()
-        }
+        setActionBar(binding.toolbar)
         val recyclerView = binding.recyclerview
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = CommentAdapter()

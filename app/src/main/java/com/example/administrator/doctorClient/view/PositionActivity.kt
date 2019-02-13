@@ -3,27 +3,41 @@ package com.example.administrator.doctorClient.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
+import com.amap.api.services.core.PoiItem
 import com.amap.api.services.district.DistrictResult
 import com.amap.api.services.district.DistrictSearch
 import com.amap.api.services.district.DistrictSearchQuery
+import com.amap.api.services.help.Inputtips
+import com.amap.api.services.help.InputtipsQuery
+import com.amap.api.services.help.Tip
+import com.amap.api.services.poisearch.PoiResult
+import com.amap.api.services.poisearch.PoiSearch
 import com.example.administrator.doctorClient.R
+import com.example.administrator.doctorClient.adapter.Event
+import com.example.administrator.doctorClient.adapter.SearchAdapter
 import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.data.Position
 import com.example.administrator.doctorClient.databinding.ActivityPositionBinding
 import com.example.administrator.doctorClient.utilities.Util
 
 
-class PositionActivity : AppCompatActivity() {
+class PositionActivity : BaseActivity(),SearchView.OnQueryTextListener{
 
     private var position = Position("","","","","","未知",0.0,0.0)
     private lateinit var binding:ActivityPositionBinding
+    private val adapter = SearchAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_position)
+        binding.recyclerview.layoutManager = LinearLayoutManager(this)
+        binding.recyclerview.adapter = adapter
         auto()
         dispatchEvent()
     }
@@ -38,8 +52,19 @@ class PositionActivity : AppCompatActivity() {
        binding.manual.setOnClickListener {
            manual()
        }
+       binding.search.setOnQueryTextListener(this)
+       adapter.setEvent(object :Event{
+           override fun event(vararg any: Any) {
+               val tip = any[0]
+               if (tip is Tip){
+                   binding.search.setQuery(tip.name,true)
+                   val point = tip.point
+                   position = position.copy(latitude = point.latitude,longitude = point.longitude)
+               }
+           }
+       })
        binding.save.setOnClickListener {
-           val description = binding.editText.text.toString()
+           val description = binding.search.query.toString()
            if (description.isNullOrBlank()){
                Util.log(binding.root,"请添加评论")
            }else {
@@ -52,6 +77,33 @@ class PositionActivity : AppCompatActivity() {
                }
            }
        }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (!query.isNullOrBlank()){
+            q(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (!newText.isNullOrBlank()){
+            q(newText)
+        }
+        return true
+    }
+
+    private fun q(keyword: String){
+        val query = InputtipsQuery(keyword,position.streetNumber)
+        query.cityLimit = true
+        val tip = Inputtips(this,query)
+        tip.setInputtipsListener{list,code->
+            runOnUiThread {
+                adapter.setList(list)
+                adapter.notifyDataSetChanged()
+            }
+        }
+        tip.requestInputtipsAsyn()
     }
 
     private fun auto(){
@@ -68,8 +120,8 @@ class PositionActivity : AppCompatActivity() {
                 if (this == null || errorCode != 0){
                     return@with
                 }
-                position = Position(country,province,city,district,streetNum,"",latitude,longitude)
-                binding.editLayout.hint = position.toString()
+                position = Position(country,province,city,district,street,"",latitude,longitude)
+                binding.show.text = position.toString()
             }
         }
         mCilient.startLocation()
@@ -94,7 +146,7 @@ class PositionActivity : AppCompatActivity() {
                 "province" -> position.copy(province = name)
                 "city" -> position.copy(city = name)
                 "district" -> position.copy(district = name)
-                "street" -> position.copy(streetNumber = name)
+                "street" -> position.copy(streetNumber = name,latitude = d.center.latitude,longitude = d.center.longitude)
                 else -> position
             }
             if (a.size > 0) {
@@ -104,7 +156,7 @@ class PositionActivity : AppCompatActivity() {
                 }.show()
             }else{
                 builder.show().dismiss()
-                binding.editLayout.hint = position.toString()
+                binding.show.text = position.toString()
             }
         }
         districtSearch.searchDistrictAsyn()

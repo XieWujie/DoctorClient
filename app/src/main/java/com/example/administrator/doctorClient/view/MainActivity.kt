@@ -10,7 +10,7 @@ import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.databinding.ActivityMainBinding
 import com.example.administrator.doctorClient.utilities.Util
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : BaseActivity(){
 
     lateinit var binding: ActivityMainBinding
 

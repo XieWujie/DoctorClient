@@ -18,7 +18,7 @@ import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.databinding.ActivityProveBinding
 import com.example.administrator.doctorClient.utilities.Util
 
-class ProveActivity : AppCompatActivity() {
+class ProveActivity : BaseActivity() {
 
     private lateinit var binding:ActivityProveBinding
     private var image = -1
@@ -41,7 +41,7 @@ class ProveActivity : AppCompatActivity() {
             image = 3
             requestPermission()
         }
-        binding.imageView3.setOnClickListener {
+        binding.imageView4.setOnClickListener {
             image = 4
             requestPermission()
         }
@@ -50,7 +50,12 @@ class ProveActivity : AppCompatActivity() {
         }
         binding.save.setOnClickListener {
             if (prove1!=null && prove2!=null && prove3!=null){
+                val dialog = Util.createProgressDialog(this)
+                dialog.show()
+                it.isClickable = false
                 UserManage.prove(this,prove1!!,prove2!!,prove3!!){e->
+                    dialog.dismiss()
+                    it.isClickable = true
                     if (e == null){
                         finish()
                     }else{
@@ -71,9 +76,7 @@ class ProveActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
         if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            when (requestCode) {
-                1 ->dispatchPictureIntent()
-            }
+           dispatchPictureIntent()
         }else {
             Util.log(binding.root, "拒绝权限将不能正常使用该功能")
         }
@@ -91,7 +94,7 @@ class ProveActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (Activity.RESULT_OK == resultCode) {
             if (data?.data!=null){
-                initAvatar(data.data)
+                initAvatar(data.data!!)
             }
         }
         super.onActivityResult(requestCode, resultCode, data)

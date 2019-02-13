@@ -34,6 +34,7 @@ class MeFragment:Fragment(){
                 requestPermission()
             }
         }
+        binding.presenter = MePresenter()
         return binding.root
     }
 
@@ -43,7 +44,10 @@ class MeFragment:Fragment(){
         super.onStart()
         activity?.setTitle("我的")
         val user = UserManage.user
-        binding.presenter = MePresenter(user?.avatar,user?.name?:"登陆")
+        if (user != null) {
+            binding.user = user
+            binding.isProve.text = if (user.doctorCertification == false) "未证明" else "已证明"
+        }
     }
 
     private fun requestPermission() {

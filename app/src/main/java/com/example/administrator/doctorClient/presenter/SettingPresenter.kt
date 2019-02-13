@@ -6,7 +6,9 @@ import androidx.navigation.findNavController
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.MessageManage
 import com.example.administrator.doctorClient.core.UserManage
-import com.example.administrator.doctorClient.view.MainActivity
+import com.example.administrator.doctorClient.utilities.Util
+import com.example.administrator.doctorClient.view.StartActivity
+
 
 class SettingPresenter{
 
@@ -39,9 +41,8 @@ class SettingPresenter{
     }
 
     fun logout(view: View){
-        UserManage?.logout()
-        MessageManage?.logout()
-        val intent = Intent(view.context,MainActivity::class.java)
-        view.context.startActivity(intent)
+        UserManage.logout()
+        MessageManage.logout()
+        Util.toActivity<StartActivity>(view.context)
     }
 }
