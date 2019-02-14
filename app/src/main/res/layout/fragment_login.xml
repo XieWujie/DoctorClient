@@ -5,19 +5,14 @@
         <variable name="loginhelper" type="com.example.administrator.doctorClient.presenter.LoginPresenter"/>
     </data>
     <RelativeLayout
-                    android:orientation="vertical" android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/background_test"/>
+                android:background="@drawable/login_shape"/>
 
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#4d4c4c"
-                android:alpha="0.8"/>
 
         <ImageView
                 android:id="@+id/login_logo"
@@ -84,7 +79,7 @@
                 android:layout_marginLeft="37dp"
                 android:layout_marginRight="37dp"
                 android:layout_below="@+id/login_line2"
-                android:background="@color/login_color"
+                android:background="@drawable/login_button_shape"
                 android:alpha="0.8"
                 android:onClick="@{loginhelper::login}"
                 android:text="登  录"

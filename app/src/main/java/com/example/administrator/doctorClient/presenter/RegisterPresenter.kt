@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.view.View
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.navigation.findNavController
 import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.utilities.Util
 import com.example.administrator.doctorClient.view.MainActivity
@@ -49,5 +50,9 @@ data class RegisterPresenter(
     private fun checkMailBox(view: View):Boolean{
 
         return true
+    }
+
+    fun onBackPress(view: View){
+        view.findNavController().navigateUp()
     }
 }
