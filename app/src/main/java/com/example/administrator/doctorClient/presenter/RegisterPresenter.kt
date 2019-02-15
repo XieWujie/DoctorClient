@@ -36,17 +36,7 @@ data class RegisterPresenter(
         }
     }
 
-    private fun firstLogin(view: View){
 
-    }
-
-    private fun checkPasswordSame(view: View):Boolean{
-        if (firstPassword != secondPassword){
-            Snackbar.make(view,"两次密码不一样", Snackbar.LENGTH_LONG).show()
-            return false
-        }
-        return true
-    }
     private fun checkMailBox(view: View):Boolean{
 
         return true

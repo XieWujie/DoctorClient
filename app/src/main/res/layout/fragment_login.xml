@@ -34,7 +34,8 @@
                 android:hint="请输入您的帐号"
                 android:text="@={loginhelper.userName}"
                 android:textColorHint="@color/hint_color"
-                android:textSize="@dimen/normal_text" />
+                android:textSize="@dimen/normal_text"
+        android:textCursorDrawable="@null"/>
 
         <View
                 android:id="@+id/login_line1"
@@ -59,7 +60,8 @@
                 android:hint="请输入您的密码"
                 android:textColorHint="@color/hint_color"
                 android:textSize="@dimen/normal_text"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textCursorDrawable="@null"/>
 
         <View
                 android:id="@+id/login_line2"

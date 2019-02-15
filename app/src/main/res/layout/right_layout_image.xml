@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable name="message" type="com.example.administrator.doctorClient.data.message.Message"/>
     </data>
@@ -59,12 +59,18 @@
                         android:layout_height="wrap_content"/>
 
             </LinearLayout>
-            <ImageView
-                    android:id="@+id/chat_right_iv_avatar"
-                    style="@style/ChatAvatar"
-                    imageSrc="@{message.avatar}"
+            <androidx.cardview.widget.CardView
                     android:layout_alignParentRight="true"
-                    android:layout_marginLeft="10dp"/>
+                    android:id="@+id/chat_right_iv_avatar"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginLeft="2dp"
+                    style="@style/ChatAvatar">
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        imageSrc="@{message.avatar}"/>
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
     </LinearLayout>

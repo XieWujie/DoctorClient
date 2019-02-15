@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="message" type="com.example.administrator.doctorClient.data.message.Message"/>
@@ -8,7 +8,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="5dp"
-                  android:layout_marginLeft="5dp"
+                  android:layout_marginLeft="15dp"
                   android:layout_marginRight="15dp"
                   android:layout_marginTop="5dp"
                   android:orientation="vertical">
@@ -29,22 +29,33 @@
                 android:layout_marginRight="2dp">
 
 
-            <ImageView
-                    android:id="@+id/chat_left_iv_avatar"
-                    style="@style/ChatAvatar"
-                    patient_image="@{message.avatar}"
-                    android:scaleType="centerCrop"/>
-            <ImageView android:layout_width="wrap_content"
-                      android:id="@+id/voice_text"
-                       android:src="@drawable/voice_left_pic"
-                       android:scaleType="centerInside"
-                      android:gravity="center"
-                      android:background="@drawable/left_bg"
-                      android:layout_height="wrap_content"/>
-            <TextView android:layout_width="wrap_content"
-                      voiceTime="@{message.voiceTime}"
-                      android:gravity="center_vertical"
-                      android:layout_height="match_parent"/>
+            <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="12dp"
+                    style="@style/ChatAvatar">
+                <ImageView
+                        android:id="@+id/chat_left_iv_avatar"
+                        patient_image="@{message.avatar}"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:orientation="horizontal"
+                          android:background="@drawable/rectangle_white_bg"
+                          android:layout_height="wrap_content">
+                <ImageView android:layout_width="wrap_content"
+                           android:id="@+id/voice_text"
+                           android:src="@drawable/voice_left_pic"
+                           android:layout_margin="12dp"
+                           android:layout_height="wrap_content"/>
+                <TextView android:layout_width="wrap_content"
+                          voiceTime="@{message.voiceTime}"
+                          android:layout_marginRight="12dp"
+                          android:layout_marginBottom="12dp"
+                          android:layout_marginTop="12dp"
+                          android:gravity="center_vertical"
+                          android:layout_height="match_parent"/>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView

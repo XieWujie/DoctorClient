@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable name="message" type="com.example.administrator.doctorClient.data.message.Message"/>
@@ -8,7 +8,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:layout_marginBottom="5dp"
-                  android:layout_marginLeft="5dp"
+                  android:layout_marginLeft="15dp"
                   android:layout_marginRight="15dp"
                   android:layout_marginTop="5dp"
                   android:orientation="vertical">
@@ -29,12 +29,16 @@
                 android:layout_marginRight="20dp">
 
 
-            <ImageView
-                    android:id="@+id/chat_left_iv_avatar"
-                    style="@style/ChatAvatar"
-                    patient_image="@{message.avatar}"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="2dp"/>
+            <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="12dp"
+                    style="@style/ChatAvatar">
+                <ImageView
+                        android:id="@+id/chat_left_iv_avatar"
+                        patient_image="@{message.avatar}"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:scaleType="centerCrop"/>
+            </androidx.cardview.widget.CardView>
 
             <ImageView android:id="@+id/chat_left_layout_content"
                        android:layout_width="200dp"

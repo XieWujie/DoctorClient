@@ -7,8 +7,10 @@ import androidx.navigation.findNavController
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.MessageManage
 import com.example.administrator.doctorClient.core.UserManage
+import com.example.administrator.doctorClient.data.AppDatabase
 import com.example.administrator.doctorClient.data.cache.GlideCacheUtil
 import com.example.administrator.doctorClient.utilities.Util
+import com.example.administrator.doctorClient.utilities.runOnNewThread
 import com.example.administrator.doctorClient.view.StartActivity
 
 
@@ -58,8 +60,11 @@ class SettingPresenter{
     }
 
     fun logout(view: View){
-        UserManage.logout()
-        MessageManage.logout()
-        Util.toActivity<StartActivity>(view.context)
+        runOnNewThread {
+            AppDatabase.getInstance(view.context).clearAllTables()
+            UserManage?.logout()
+            MessageManage?.logout()
+            Util.toActivity<StartActivity>(view.context)
+        }
     }
 }

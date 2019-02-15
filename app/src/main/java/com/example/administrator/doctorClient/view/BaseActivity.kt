@@ -18,7 +18,7 @@ open class BaseActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_36dp)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_doctor_back)
         toolbar.setTitleTextColor(Color.WHITE)
         toolbar.setNavigationOnClickListener {
             onBackPressed()
