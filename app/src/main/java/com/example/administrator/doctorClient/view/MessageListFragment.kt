@@ -41,7 +41,6 @@ class MessageListFragment:Fragment(){
             binding.freshLayout.isRefreshing = false
             return
         }
-        MessageManage.freshMessage()
         model.newMessage(id).observe(this, Observer {
             adapter.submitList(it)
             Log.d("uiui",it.toString())

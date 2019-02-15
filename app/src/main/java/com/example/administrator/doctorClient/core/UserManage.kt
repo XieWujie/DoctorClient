@@ -61,13 +61,13 @@ object UserManage{
             val avatar = getString("avatar")
             val qualification: String = getString("qualification") ?: "未知"
             val education: String = getString("education") ?: "未知"
-            val doctorCertification: Boolean = getBoolean("doctorCertification") ?: false
-            val authentication: Boolean = getBoolean("authentication") ?: false
+            val doctorCertification: Boolean = getBoolean("doctorCertification")
+            val authentication: Boolean = getBoolean("authentication")
             val workerTime: String = getString("workerTime") ?: "未知"
             val graduatedSchool: String = getString("graduatedSchool") ?: "未知"
             val workerAddress: String = getString("workerAddress") ?: "未知"
             val phone: String = getString("phone") ?: "未知"
-            val historyOrderCount: Int = getInt("historyOrder") ?: 0
+            val historyOrderCount: Int = getInt("historyOrderCount")
             val goodAt: String = getString("goodAt") ?: "未知"
             val country: String = getString("country") ?: ""
             val province: String = getString("province") ?: ""
@@ -147,6 +147,30 @@ object UserManage{
         respository = UserRepository.getInstance(AppDatabase.getInstance(context).getUserDao())
     }
 
+    fun updateHistoryCount(context: Context,upDateCallback: (e: Exception?) -> Unit){
+        initRespository(context)
+        val o = AVObject.createWithoutData("_User", user!!.userId)
+            o.fetchInBackground(object :GetCallback<AVObject>(){
+                override fun done(o: AVObject?, e: AVException?) {
+                    if (e == null){
+                        val count = o!!.getInt("historyOrderCount")
+                        val newCount = count+1
+                        o.put("historyOrderCount",newCount)
+                        o.saveInBackground(object :SaveCallback(){
+                            override fun done(e: AVException?) {
+                                if (e == null){
+                                    respository?.addUser(user!!.copy(historyOrderCount = newCount))
+                                }
+                                upDateCallback(e)
+                            }
+                        })
+                    }else{
+                        upDateCallback(e)
+                    }
+                }
+            })
+    }
+
     fun update(context: Context,key:String,value:String, u: User,callback:(e:Exception?)->Unit){
         initRespository(context)
         val o = AVObject.createWithoutData("_User",u.userId)
@@ -163,6 +187,8 @@ object UserManage{
             }
         })
     }
+
+
 
     fun updatePosition(context: Context,position: Position,upDateCallback: (e: Exception?) -> Unit){
         initRespository(context)

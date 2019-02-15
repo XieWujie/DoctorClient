@@ -34,6 +34,7 @@ class MessageHandler: AVIMMessageHandler(){
             val message = Message(m.messageId,c.conversationId,name,content,name,id,
                 type,voiceTime, c.unreadMessagesCount,m.timestamp,UserManage.user?.userId!!, SENDING,avatar)
             MessageManage.cacheMessage(message,false)
+            NotifyUtil.createNewMessageNotification(App.getContext(),message)
         }
     }
 

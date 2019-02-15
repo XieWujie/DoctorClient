@@ -38,40 +38,13 @@
           android:background="@color/dividingLine"
           android:layout_height="1dp"/>
 
-    <RelativeLayout  style="@style/me_item_style">
-        <TextView android:layout_width="wrap_content"
-                  android:textColor="@color/meText"
-                  android:layout_marginLeft="10dp"
-                  android:layout_centerVertical="true"
-                  android:text="设置支付密码"
-                  android:layout_height="wrap_content"/>
-        <LinearLayout android:layout_width="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_centerVertical="true"
-                      android:layout_alignParentRight="true"
-                      android:layout_height="wrap_content">
-            <TextView android:layout_width="wrap_content"
-                      android:text="去设置"
-                      android:layout_marginRight="5dp"
-                      android:layout_height="wrap_content"/>
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_marginRight="5dp"
-                       android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-                       android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
 
     <RelativeLayout  style="@style/me_item_style">
         <TextView android:layout_width="wrap_content"
                   android:textColor="@color/meText"
                   android:layout_marginLeft="10dp"
                   android:layout_centerVertical="true"
-                  android:text="修改手机号"
+                  android:text="修改邮箱"
                   android:layout_height="wrap_content"/>
         <LinearLayout android:layout_width="wrap_content"
                       android:orientation="horizontal"

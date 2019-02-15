@@ -13,7 +13,7 @@
     <style name="me_item_style">
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:background">@color/meItemBackground</item>
+        <item name="android:background">@drawable/item_press_background</item>
     </style>
     <style parent="AppTheme" name="RegTheme">
     <item name="colorPrimaryDark">@null</item>

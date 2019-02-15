@@ -2,6 +2,7 @@ package com.example.administrator.doctorClient.adapter
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.util.Log
 import com.example.administrator.doctorClient.core.MessageManage
 import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.data.message.Message
@@ -32,7 +33,7 @@ class MessageListHolder(val binding: MessageItemBinding):BaseHolder(binding.root
                 val intent = Intent(context, ChatActivity::class.java)
                 intent.putExtra(CONVERSATION_ID,any.conversationId)
                 intent.putExtra(CONVERSATION__NAME,any.conversationName)
-                intent.putExtra(AVATAR,any.avatar)
+                Log.d("message--",any.toString())
                 context.startActivity(intent)
             }
             binding.root.setOnLongClickListener {

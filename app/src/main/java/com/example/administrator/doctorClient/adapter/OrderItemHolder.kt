@@ -3,6 +3,7 @@ package com.example.administrator.doctorClient.adapter
 import android.content.Intent
 import android.view.View
 import com.example.administrator.doctorClient.core.OrderManage
+import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.data.order.Order
 import com.example.administrator.doctorClient.databinding.OrderListItemBinding
 import com.example.administrator.doctorClient.utilities.*
@@ -76,6 +77,7 @@ class OrderItemHolder(private val binding:OrderListItemBinding):BaseHolder(bindi
                         OrderManage.endTreatment(context,any){
 
                         }
+                        UserManage.updateHistoryCount(context){}
                     }
                 }
             }

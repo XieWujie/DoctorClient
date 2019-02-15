@@ -1,13 +1,17 @@
 package com.example.administrator.doctorClient.view
 
+import android.app.ActionBar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.OrderManage
+import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.data.order.Order
 import com.example.administrator.doctorClient.databinding.ActivityOrderDetailBinding
 import com.example.administrator.doctorClient.utilities.*
@@ -64,14 +68,16 @@ class OrderDetailActivity : BaseActivity() {
         binding.toolbar.setNavigationOnClickListener {
             finish()
         }
+        val p = LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT)
+        p.weight = 1f
         when(order.state){
             NOT_GENERATED->{
                 val agree = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
                 val notAgree = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
                 agree.text = "同意"
                 notAgree.text = "不同意"
-                binding.bottomLayout.addView(notAgree)
-                binding.bottomLayout.addView(agree)
+                binding.bottomLayout.addView(notAgree,p)
+                binding.bottomLayout.addView(agree,p)
                 agree.setOnClickListener {
                     val dialog = Util.createProgressDialog(this)
                     dialog.show()
@@ -104,7 +110,7 @@ class OrderDetailActivity : BaseActivity() {
             STARTING->{
                 val button  = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
                 button.text = "确认支付"
-                binding.bottomLayout.addView(button)
+                binding.bottomLayout.addView(button,p)
                 button.setOnClickListener {
                     OrderManage.endTreatment(this,order){e->
                         if (e == null){
@@ -114,6 +120,7 @@ class OrderDetailActivity : BaseActivity() {
                             Util.log(it,e.message)
                         }
                     }
+                    UserManage.updateHistoryCount(this){}
                 }
             }
         }

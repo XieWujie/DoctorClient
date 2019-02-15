@@ -84,15 +84,25 @@
                 app:layout_constraintHorizontal_bias="0.851" app:layout_constraintTop_toTopOf="@+id/guideline2"/>
         <TextView
 
-                android:text="更多"
+                android:text="预定时间"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:textSize="12sp"
                 android:id="@+id/textView6" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline2" app:layout_constraintEnd_toStartOf="@+id/guideline"
-                android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.5"/>
+                app:layout_constraintTop_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toStartOf="@+id/cancel" android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0"/>
+        <TextView
+                orderTime="@{order.orderTime}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7" app:layout_constraintEnd_toStartOf="@+id/cancel"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" app:layout_constraintStart_toEndOf="@+id/textView6"
+                android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="0.0"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 </layout>

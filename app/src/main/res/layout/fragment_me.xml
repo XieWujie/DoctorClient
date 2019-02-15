@@ -69,10 +69,8 @@
     <View android:layout_width="match_parent"
           android:background="@color/dividingLine"
           android:layout_height="1dp"/>
-    <RelativeLayout android:layout_width="match_parent"
-                    android:background="@color/meItemBackground"
-                    android:onClick="@{presenter::edit}"
-                    android:layout_height="50dp">
+    <RelativeLayout style="@style/me_item_style"
+                    android:onClick="@{presenter::edit}">
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="10dp"
@@ -90,10 +88,8 @@
           android:background="@color/dividingLine"
           android:layout_height="1dp"/>
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:background="@color/meItemBackground"
-                    android:onClick="@{presenter::comment}"
-                    android:layout_height="50dp">
+    <RelativeLayout style="@style/me_item_style"
+                    android:onClick="@{presenter::comment}">
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="10dp"
@@ -110,10 +106,8 @@
     <View android:layout_width="match_parent"
           android:background="@color/dividingLine"
           android:layout_height="1dp"/>
-    <RelativeLayout android:layout_width="match_parent"
-                    android:background="@color/meItemBackground"
-                    android:onClick="@{presenter::clickCustomer}"
-                    android:layout_height="50dp">
+    <RelativeLayout style="@style/me_item_style"
+                    android:onClick="@{presenter::clickCustomer}">
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="10dp"
@@ -134,10 +128,8 @@
           android:layout_marginTop="12dp"
           android:background="@color/dividingLine"
           android:layout_height="1dp"/>
-    <RelativeLayout android:layout_width="match_parent"
-                    android:background="@color/meItemBackground"
-                    android:onClick="@{presenter::clickSetting}"
-                    android:layout_height="50dp">
+    <RelativeLayout style="@style/me_item_style"
+                    android:onClick="@{presenter::clickSetting}">
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="10dp"

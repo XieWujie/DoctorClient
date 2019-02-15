@@ -1,6 +1,7 @@
 package com.example.administrator.doctorClient.core
 
 import android.content.Context
+import android.util.Log
 import com.avos.avoscloud.AVException
 import com.avos.avoscloud.AVObject
 import com.avos.avoscloud.GetCallback
@@ -390,6 +391,5 @@ object MessageManage{
     }
 
     fun getTempMessageId() = count?.get()?:"0"
-
 
 }
