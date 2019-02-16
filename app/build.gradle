@@ -21,7 +21,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -71,10 +73,8 @@ dependencies {
     //leanclound
     implementation 'cn.leancloud.android:avoscloud-sdk:v4.7.3'
     implementation('cn.leancloud.android:avoscloud-push:v4.7.3@aar') { transitive = true }
-    implementation 'cn.leancloud.android:avoscloud-sns:v4.7.3@aar'
-    implementation 'cn.leancloud.android:qq-sdk:1.6.1-leancloud'
+
     //map
-    implementation 'com.amap.api:map2d:latest.integration'
     implementation 'com.amap.api:search:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'de.hdodenhof:circleimageview:3.0.0'

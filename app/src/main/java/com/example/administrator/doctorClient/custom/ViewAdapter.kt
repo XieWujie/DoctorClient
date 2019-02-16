@@ -4,12 +4,8 @@ import android.text.format.DateUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.amap.api.maps2d.AMapUtils
-import com.amap.api.maps2d.model.LatLng
 import com.bumptech.glide.Glide
 import com.example.administrator.doctorClient.R
-import com.example.administrator.doctorClient.core.UserManage
-import com.example.administrator.doctorClient.data.Position
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,20 +46,6 @@ class ViewAdapter{
             view.text = s
         }
 
-        @JvmStatic
-        @BindingAdapter("distance")
-        fun setDistance(view: TextView,position: Position){
-            val o = UserManage.position
-            if (o == null)return
-            val dPoint = LatLng(position.latitude,position.longitude)
-            val mPoint = LatLng(o.latitude,o.longitude)
-            val distance = AMapUtils.calculateLineDistance(dPoint,mPoint)
-            if (distance>1000){
-                view.text = "${(distance/100)/10f}千米"
-            }else {
-                view.text = "$distance 米"
-            }
-        }
 
         const val a = 3600000
         var lastTime = 0L
@@ -102,13 +84,6 @@ class ViewAdapter{
             }
         }
 
-        @JvmStatic
-        @BindingAdapter("unReadCount")
-        fun setUnReadCount(view: TextView, count:Int){
-            if (count>0) {
-                view.text = count.toString()
-            }
-        }
 
         @JvmStatic
         @BindingAdapter("voiceTime")

@@ -29,7 +29,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:text="@={registerhelper.userName}"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
+                        android:maxLines="1"
                 android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,7 +43,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:text="@={registerhelper.mailBox}"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
+                        android:maxLines="1"
                         android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +59,8 @@
                         android:layout_width="match_parent"
                         android:inputType="textPassword"
                         android:text="@={registerhelper.firstPassword}"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
+                        android:maxLines="1"
                         android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
