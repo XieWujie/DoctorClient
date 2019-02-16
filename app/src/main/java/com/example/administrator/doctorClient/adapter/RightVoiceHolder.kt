@@ -40,7 +40,7 @@ class RightVoiceHolder(val bind:RightVoiceLayoutBinding):BaseHolder(bind.root){
                 }
             }
             bind.message = any
-            bind.chatRightLayoutContent.setOnClickListener {
+            bind.rightVoice.setOnClickListener {
                 playVoice(any)
             }
         }

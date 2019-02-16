@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -22,6 +25,12 @@ import java.util.*
 class OrderDetailActivity : BaseActivity() {
 
     private lateinit var binding:ActivityOrderDetailBinding
+    private var menu: Menu? = null
+    val AGREE = 1
+    val DISAGREE = 2
+    val CONFIRM = 3
+    private var order:Order? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +43,8 @@ class OrderDetailActivity : BaseActivity() {
             }else{
                 order
             }
+            this.order = newOrder
             binding.order = newOrder
-            eventHandle(newOrder)
             initSchedule(newOrder)
         }
         setTitle("订单详情")
@@ -43,9 +52,8 @@ class OrderDetailActivity : BaseActivity() {
 
     private fun initSchedule(order: Order){
         val f = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val state = order.state
         val schedule = binding.orderSchedule
-        when(state){
+        when(order.state){
             NOT_GENERATED->schedule.init(0, listOf(f.format(Date(order.createTime))))
             NOT_START->schedule.init(1, listOf(f.format(Date(order.createTime)),f.format(Date(order.agreeTime))))
             STARTING->schedule.init(2, listOf(f.format(Date(order.createTime)),f.format(Date(order.agreeTime)),
@@ -57,72 +65,66 @@ class OrderDetailActivity : BaseActivity() {
         }
     }
 
-    fun eventHandle(order: Order){
-        binding.sendMessage.setOnClickListener {
-            val intent = Intent(this,ChatActivity::class.java)
-            intent.putExtra(CONVERSATION__NAME,order.name)
-            intent.putExtra(CONVERSATION_ID,order.doctorId)
-            intent.putExtra(AVATAR,order.name)
-            startActivity(intent)
-        }
-        binding.toolbar.setNavigationOnClickListener {
-            finish()
-        }
-        val p = LinearLayout.LayoutParams(0,LinearLayout.LayoutParams.WRAP_CONTENT)
-        p.weight = 1f
-        when(order.state){
-            NOT_GENERATED->{
-                val agree = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
-                val notAgree = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
-                agree.text = "同意"
-                notAgree.text = "不同意"
-                binding.bottomLayout.addView(notAgree,p)
-                binding.bottomLayout.addView(agree,p)
-                agree.setOnClickListener {
-                    val dialog = Util.createProgressDialog(this)
-                    dialog.show()
-                    OrderManage.agreeOrder(this,order){e->
-                        dialog.dismiss()
-                        if (e == null){
-                            binding.bottomLayout.removeView(notAgree)
-                            agree.text = "已同意"
-                            agree.isClickable = false
-                            initSchedule(order)
-                        }else{
-                            Util.log(binding.root,e.message)
-                        }
-                    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        this.menu = menu
+        MenuInflater(this).inflate(R.menu.order_detail_menu,menu)
+            when(order?.state){
+                NOT_GENERATED->{
+                    menu?.add(1, AGREE,2,"同意")
+                    menu?.add(1,DISAGREE,3,"不同意")
                 }
-                notAgree.setOnClickListener {
-                    val dialog = Util.createProgressDialog(this)
-                    dialog.show()
-                    OrderManage.cancelOrder(order){e->
-                        dialog.dismiss()
-                        if (e == null){
-                            binding.bottomLayout.removeView(agree)
-                            binding.bottomLayout.removeView(notAgree)
-                        }else{
-                            Util.log(binding.root,e.message)
-                        }
+                STARTING->{
+                    menu?.add(1,CONFIRM,2,"确认支付")
+                }
+            }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    if (order == null)return false
+        when(item?.itemId){
+            AGREE->{
+                val dialog = Util.createProgressDialog(this)
+                dialog.show()
+                OrderManage.agreeOrder(this,order!!){e->
+                    dialog.dismiss()
+                    if (e == null){
+                        menu?.removeItem(AGREE)
+                        menu?.removeItem(DISAGREE)
+                    }else{
+                        Util.log(binding.root,e.message)
                     }
                 }
             }
-            STARTING->{
-                val button  = LayoutInflater.from(this).inflate(R.layout.order_bottom_button,null) as Button
-                button.text = "确认支付"
-                binding.bottomLayout.addView(button,p)
-                button.setOnClickListener {
-                    OrderManage.endTreatment(this,order){e->
-                        if (e == null){
-                            button.text = "已确认"
-                            initSchedule(order)
-                        }else{
-                            Util.log(it,e.message)
-                        }
+            DISAGREE->{
+                val dialog = Util.createProgressDialog(this)
+                dialog.show()
+                OrderManage.cancelOrder(order!!){e->
+                    dialog.dismiss()
+                    if (e == null){
+
+                    }else{
+                        Util.log(binding.root,e.message)
                     }
-                    UserManage.updateHistoryCount(this){}
                 }
             }
+            CONFIRM->{
+                OrderManage.endTreatment(this,order!!){e->
+                    if (e == null){
+                        menu?.removeItem(CONFIRM)
+                    }else{
+                        Util.log(binding.root,e.message)
+                    }
+                }
+                UserManage.updateHistoryCount(this){}
+            }
+            R.id.send_message->{
+                val intent = Intent(this,ChatActivity::class.java)
+                intent.putExtra(CONVERSATION__NAME,order!!.name)
+                intent.putExtra(CONVERSATION_ID,order!!.doctorId)
+                startActivity(intent)
+            }
         }
+        return true
     }
 }

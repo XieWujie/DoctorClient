@@ -20,9 +20,9 @@
 
     <color name="MyEditText">#ff333333</color>
 
-    <color name="line_color">#eaeaea</color>
+    <color name="line_color">#99000000</color>
 
-    <color name="hint_color">#cac2e6</color>
+    <color name="hint_color">#8A000000</color>
 
     <color name="edit_color">#dedede</color>
 

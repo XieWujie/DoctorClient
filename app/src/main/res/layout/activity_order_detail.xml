@@ -6,7 +6,9 @@
     </data>
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="match_parent">
-        <androidx.appcompat.widget.Toolbar style="@style/toolbar_style" android:id="@+id/toolbar">
+        <androidx.appcompat.widget.Toolbar style="@style/toolbar_style"
+                                           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                                           android:id="@+id/toolbar">
         </androidx.appcompat.widget.Toolbar>
         <ScrollView android:layout_width="match_parent"
                     android:layout_below="@+id/toolbar"
@@ -85,21 +87,5 @@
                           android:layout_height="wrap_content"/>
             </LinearLayout>
         </ScrollView>
-        <LinearLayout android:layout_width="match_parent"
-                      android:orientation="horizontal"
-                      android:id="@+id/bottom_layout"
-                      android:layout_marginBottom="5dp"
-                      android:layout_alignParentBottom="true"
-                      android:layout_height="wrap_content">
-            <Button
-                    android:text="发送消息"
-                    android:layout_width="0dp"
-                    android:textColor="#000000"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/send_message" />
-        </LinearLayout>
     </RelativeLayout>
 </layout>

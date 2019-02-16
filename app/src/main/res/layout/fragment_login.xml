@@ -8,11 +8,6 @@
             android:orientation="vertical" android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/login_shape"/>
-
 
         <ImageView
                 android:id="@+id/login_logo"
@@ -20,7 +15,7 @@
                 android:layout_height="70dp"
                 android:layout_marginTop="70dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/background_test"/>
+                android:src="@drawable/logo"/>
 
         <EditText
                 android:id="@+id/login_username"
@@ -40,12 +35,12 @@
         <View
                 android:id="@+id/login_line1"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_below="@+id/login_username"
-                android:background="@color/line_color"/>
+                android:background="#99000000"/>
 
         <EditText
                 android:id="@+id/login_password"
@@ -66,12 +61,12 @@
         <View
                 android:id="@+id/login_line2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="1px"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_below="@+id/login_password"
-                android:background="@color/line_color"/>
+                android:background="#99000000"/>
 
         <Button
                 android:id="@+id/login_button"
@@ -81,11 +76,10 @@
                 android:layout_marginLeft="37dp"
                 android:layout_marginRight="37dp"
                 android:layout_below="@+id/login_line2"
-                android:background="@drawable/login_button_shape"
-                android:alpha="0.8"
+                android:background="@color/blue_toolbar"
                 android:onClick="@{loginhelper::login}"
                 android:text="登  录"
-                android:textSize="@dimen/normal_text"
+                android:textSize="18sp"
                 android:textColor="#ffffff" />
 
         <TextView
@@ -96,9 +90,9 @@
                 android:layout_marginLeft="37dp"
                 android:layout_below="@id/login_button"
                 android:text="忘记密码?"
+                android:textColor="@color/login_color"
                 android:onClick="@{loginhelper::findPassword}"
-                android:textSize="@dimen/normal_text"
-                android:textColor="@color/login_color"/>
+                android:textSize="@dimen/normal_text"/>
 
         <TextView
                 android:id="@+id/login_register"
@@ -109,33 +103,9 @@
                 android:layout_below="@id/login_button"
                 android:layout_alignParentRight="true"
                 android:text="新用户注册"
+                android:textColor="@color/login_color"
                 android:onClick="@{loginhelper::register}"
-                android:textSize="@dimen/normal_text"
-                android:textColor="@color/login_color"/>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="登录即代表阅读并同意"
-                    android:textSize="@dimen/small_text"
-                    android:textColor="@color/white_text"/>
-
-            <TextView
-                    android:id="@+id/login_agreement"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="服务条款"
-                    android:textSize="@dimen/small_text"
-                    android:textColor="@color/login_color"/>
-
-        </LinearLayout>
+                android:textSize="@dimen/normal_text"/>
 
 
 
