@@ -6,46 +6,52 @@
     </data>
     <RelativeLayout
             android:orientation="vertical" android:layout_width="match_parent"
+            android:background="@drawable/login_bg"
             android:layout_height="match_parent">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/login_logo"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="70dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/logo"/>
+                android:src="@mipmap/ic_launcher_round"/>
 
         <EditText
                 android:id="@+id/login_username"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_below="@+id/login_logo"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
                 android:background="@null"
                 android:hint="请输入您的帐号"
                 android:text="@={loginhelper.userName}"
                 android:textSize="@dimen/normal_text"
-        android:textCursorDrawable="@null"/>
+                android:textCursorDrawable="@null"/>
 
         <View
                 android:id="@+id/login_line1"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_below="@+id/login_username"
-                android:background="#99000000"/>
+                android:background="#99ffffff"/>
 
         <EditText
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_below="@+id/login_line1"
@@ -53,6 +59,7 @@
                 android:text="@={loginhelper.password}"
                 android:hint="请输入您的密码"
                 android:textSize="@dimen/normal_text"
+                android:textColorHint="@android:color/white"
                 android:inputType="textPassword"
                 android:textCursorDrawable="@null"/>
 
@@ -64,13 +71,13 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_below="@+id/login_password"
-                android:background="#99000000"/>
+                android:background="#99ffffff"/>
 
         <Button
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginLeft="37dp"
                 android:layout_marginRight="37dp"
                 android:layout_below="@+id/login_line2"
@@ -104,8 +111,5 @@
                 android:textColor="@color/login_color"
                 android:onClick="@{loginhelper::register}"
                 android:textSize="@dimen/normal_text"/>
-
-
-
     </RelativeLayout>
 </layout>

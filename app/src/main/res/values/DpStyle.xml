@@ -81,4 +81,7 @@
         <item name="colorControlActivated">#000000</item>
         <item name="colorControlHighlight">#000000</item>
     </style>
+    <style name="TextInputAppTheme" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">#99ffffff</item>
+    </style>
 </resources>

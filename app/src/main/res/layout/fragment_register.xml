@@ -6,6 +6,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="vertical"
+            android:background="@drawable/login_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -24,20 +25,26 @@
                                                                    android:hint="用户名"
                                                                    android:layout_marginTop="5dp"
                                                                    app:hintEnabled="true"
+                                                                   app:hintTextAppearance="@style/TextInputAppTheme"
+                                                                   android:textColorHint="@android:color/white"
                                                                    android:layout_height="wrap_content"
                                                                    android:theme="@style/EditText_Theme">
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:text="@={registerhelper.userName}"
                         android:layout_height="50dp"
+                        android:background="@null"
                         android:maxLines="1"
-                android:textCursorDrawable="@null"/>
+                        android:textColor="@android:color/white"
+                        android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
                                                                    android:hint="邮箱"
                                                                    android:layout_marginTop="5dp"
                                                                    app:hintEnabled="true"
+                                                                   app:hintTextAppearance="@style/TextInputAppTheme"
+                                                                   android:textColorHint="@android:color/white"
                                                                    android:layout_height="wrap_content"
                                                                    android:theme="@style/EditText_Theme">
                 <com.google.android.material.textfield.TextInputEditText
@@ -45,6 +52,8 @@
                         android:text="@={registerhelper.mailBox}"
                         android:layout_height="50dp"
                         android:maxLines="1"
+                        android:background="@null"
+                        android:textColor="@android:color/white"
                         android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,6 +62,11 @@
                                                                    android:layout_marginTop="5dp"
                                                                    app:passwordToggleEnabled="true"
                                                                    app:hintEnabled="true"
+                                                                   app:passwordToggleTintMode="src_in"
+                                                                   app:passwordToggleTint="#99ffffff"
+                                                                   app:hintTextAppearance="@style/TextInputAppTheme"
+                                                                   android:textColorHint="@android:color/white"
+                                                                   android:textColor="@android:color/white"
                                                                    android:layout_height="wrap_content"
                                                                    android:theme="@style/EditText_Theme">
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,6 +74,8 @@
                         android:inputType="textPassword"
                         android:text="@={registerhelper.firstPassword}"
                         android:layout_height="50dp"
+                        android:background="@null"
+                        android:textColor="@android:color/white"
                         android:maxLines="1"
                         android:textCursorDrawable="@null"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -80,11 +96,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@color/login_color"
+                android:background="@color/blue_toolbar"
         />
         <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:src="@drawable/ic_black_back"
+                android:layout_height="wrap_content" android:src="@drawable/ic_white_back"
                 android:id="@+id/imageView5"
                 android:onClick="@{registerhelper::onBackPress}"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"

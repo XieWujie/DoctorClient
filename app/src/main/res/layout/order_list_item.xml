@@ -33,7 +33,7 @@
                                                     android:orientation="vertical"/>
         <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content" android:id="@+id/guideline2"
-                                                    app:layout_constraintGuide_begin="90dp"
+                                                    app:layout_constraintGuide_begin="80dp"
                                                     android:orientation="horizontal"/>
         <TextView
                 android:text="@{order.name}"
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/message"
-                android:src="@drawable/ic_chat_black_24dp"
+                android:src="@drawable/ic_message_icon"
                 app:layout_constraintTop_toTopOf="@+id/guideline2"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
@@ -77,16 +77,16 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:padding="2dp"
-                android:background="@drawable/record_layout_background"
                 android:id="@+id/cancel" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.851" app:layout_constraintTop_toTopOf="@+id/guideline2"/>
+                app:layout_constraintHorizontal_bias="0.851" app:layout_constraintTop_toTopOf="@+id/guideline2"
+                app:layout_constraintVertical_bias="0.39"/>
         <TextView
 
                 android:text="预定时间"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:id="@+id/textView6" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"

@@ -16,7 +16,7 @@ class OrderItemHolder(private val binding:OrderListItemBinding):BaseHolder(bindi
         if (any is Order){
             binding.order = any
             binding.cancel.visibility = View.INVISIBLE
-           binding.state.text =  when(any.state){
+            binding.state.text =  when(any.state){
                 NOT_GENERATED->{
                     binding.cancel.visibility = View.VISIBLE
                     binding.cancel.text = "同意"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
    <data>
        <variable name="presenter" type="com.example.administrator.doctorClient.presenter.MePresenter"/>
        <variable name="user" type="com.example.administrator.doctorClient.data.user.User"/>
@@ -7,26 +7,26 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                                 android:orientation="vertical"
-                                                                android:background="@color/meItemBackground"
                                                                 android:layout_width="match_parent"
                                                                 android:layout_height="match_parent">
     <RelativeLayout android:layout_width="match_parent"
                     android:gravity="center"
                     android:background="@color/blue_toolbar"
                     android:layout_height="155dp">
-        <de.hdodenhof.circleimageview.CircleImageView android:layout_width="60dp"
+        <de.hdodenhof.circleimageview.CircleImageView android:layout_width="90dp"
                                                       android:id="@+id/avatar"
                                                       android:layout_centerHorizontal="true"
-                                                      android:layout_marginTop="15dp"
                    imageSrc="@{user.avatar}"
-                   android:layout_height="60dp"/>
+                   android:layout_height="90dp"/>
         <LinearLayout android:layout_width="wrap_content"
                       android:layout_centerHorizontal="true"
                       android:layout_below="@id/avatar"
+                      android:layout_marginTop="5dp"
                       android:layout_height="wrap_content">
             <TextView android:layout_width="wrap_content"
                       android:gravity="center"
                       android:text="@{user.name}"
+                      android:textSize="16sp"
                       android:textColor="@android:color/white"
                       android:layout_centerVertical="true"
                       android:layout_toRightOf="@id/avatar"
@@ -41,11 +41,25 @@
     <View android:layout_width="match_parent"
           android:background="@color/dividingLine"
           android:layout_height="2dp"/>
+    <androidx.cardview.widget.CardView android:layout_width="wrap_content"
+                                       android:layout_marginLeft="10dp"
+                                       android:layout_marginTop="10dp"
+                                       android:layout_marginRight="10dp"
+                                       app:cardCornerRadius="10dp"
+                                       android:elevation="1dp"
+                                       android:layout_height="wrap_content">
     <RelativeLayout   android:onClick="@{presenter::prove}"
                       style="@style/me_item_style">
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/doctor_icon"
+                   android:src="@drawable/ic_doctor_icon"
+                   android:layout_centerVertical="true"
+                   android:layout_margin = "5dp"
+                   android:layout_height="wrap_content"/>
         <TextView android:layout_width="wrap_content"
                   android:textColor="@color/meText"
                   android:layout_marginLeft="10dp"
+                  android:layout_toRightOf="@+id/doctor_icon"
                   android:layout_centerVertical="true"
                   android:text="医生资格证明"
                   android:layout_height="wrap_content"/>
@@ -64,15 +78,27 @@
                        android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView android:layout_width="wrap_content"
+                                       android:layout_marginLeft="10dp"
+                                       android:layout_marginTop="10dp"
+                                       android:layout_marginRight="10dp"
+                                       app:cardCornerRadius="10dp"
+                                       android:elevation="1dp"
+                                       android:layout_height="wrap_content">
     <RelativeLayout style="@style/me_item_style"
                     android:onClick="@{presenter::edit}">
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/edit_icon"
+                   android:src="@drawable/ic_edit_icon"
+                   android:layout_centerVertical="true"
+                   android:layout_margin = "5dp"
+                   android:layout_height="wrap_content"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
+                  android:layout_toRightOf="@+id/edit_icon"
                   android:layout_marginLeft="10dp"
                   android:textColor="@color/meItem"
                   android:text="编辑资料"
@@ -84,15 +110,28 @@
                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                    android:layout_height="wrap_content"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
+    </androidx.cardview.widget.CardView>
 
+
+    <androidx.cardview.widget.CardView android:layout_width="wrap_content"
+                                       android:layout_marginLeft="10dp"
+                                       android:layout_marginTop="10dp"
+                                       android:layout_marginRight="10dp"
+                                       app:cardCornerRadius="10dp"
+                                       android:elevation="1dp"
+                                       android:layout_height="wrap_content">
     <RelativeLayout style="@style/me_item_style"
                     android:onClick="@{presenter::comment}">
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/comment_icon"
+                   android:src="@drawable/ic_comment_icon"
+                   android:layout_centerVertical="true"
+                   android:layout_margin = "5dp"
+                   android:layout_height="wrap_content"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="10dp"
+                  android:layout_toRightOf="@id/comment_icon"
                   android:textColor="@color/meItem"
                   android:text="对我的评论"
                   android:layout_height="wrap_content"/>
@@ -103,14 +142,29 @@
                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                    android:layout_height="wrap_content"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView android:layout_width="wrap_content"
+                                       android:layout_marginLeft="10dp"
+                                       android:layout_marginTop="10dp"
+                                       android:layout_marginRight="10dp"
+                                       app:cardCornerRadius="10dp"
+                                       android:elevation="1dp"
+                                       android:layout_height="wrap_content">
     <RelativeLayout style="@style/me_item_style"
                     android:onClick="@{presenter::clickCustomer}">
+        android:onClick="@{presenter::clickSetting}">
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/server_icon"
+                   android:src="@drawable/ic_server_icon"
+                   android:layout_centerVertical="true"
+                   android:layout_margin = "5dp"
+                   android:layout_height="wrap_content"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
                   android:layout_marginLeft="10dp"
+                  android:layout_toRightOf="@id/server_icon"
                   android:textColor="@color/meItem"
                   android:text="客服"
                   android:layout_height="wrap_content"/>
@@ -121,17 +175,26 @@
                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                    android:layout_height="wrap_content"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
-    <View android:layout_width="match_parent"
-          android:layout_marginTop="12dp"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView android:layout_width="wrap_content"
+                                       android:layout_marginLeft="10dp"
+                                       android:layout_marginTop="10dp"
+                                       android:layout_marginRight="10dp"
+                                       app:cardCornerRadius="10dp"
+                                       android:elevation="1dp"
+                                       android:layout_height="wrap_content">
     <RelativeLayout style="@style/me_item_style"
                     android:onClick="@{presenter::clickSetting}">
+        <ImageView android:layout_width="wrap_content"
+                   android:id="@+id/setting_icon"
+                   android:src="@drawable/ic_setting_icon"
+                   android:layout_centerVertical="true"
+                   android:layout_margin = "5dp"
+                   android:layout_height="wrap_content"/>
         <TextView android:layout_width="wrap_content"
                   android:layout_centerVertical="true"
+                  android:layout_toRightOf="@id/setting_icon"
                   android:layout_marginLeft="10dp"
                   android:textColor="@color/meItem"
                   android:text="设置"
@@ -143,9 +206,8 @@
                    android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
                    android:layout_height="wrap_content"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:background="@color/dividingLine"
-          android:layout_height="1dp"/>
+    </androidx.cardview.widget.CardView>
+
 
 
 </LinearLayout>

@@ -1,8 +1,10 @@
 package com.example.administrator.doctorClient.view
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -22,6 +24,17 @@ class MainActivity : BaseActivity(){
         binding.toolbar.setTitleTextColor(Color.WHITE)
         val color = resources.getColor(R.color.blue_toolbar)
         Util.setStatusBar(this,color)
+    }
 
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            val intent =  Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            startActivity(intent)
+            return true
+        }else {
+            return super.onKeyDown(keyCode, event)
+        }
     }
 }
