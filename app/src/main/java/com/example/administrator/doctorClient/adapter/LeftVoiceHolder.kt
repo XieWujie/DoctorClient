@@ -8,8 +8,6 @@ import com.example.administrator.doctorClient.databinding.LeftLayoutVoiceBinding
 import com.example.administrator.doctorClient.utilities.PathUtil
 import com.example.administrator.doctorClient.utilities.runOnNewThread
 
-import java.lang.Exception
-
 class LeftVoiceHolder(val bind:LeftLayoutVoiceBinding):BaseHolder(bind.root){
 
     private val mediaPlayer = MediaPlayer()
@@ -24,14 +22,14 @@ class LeftVoiceHolder(val bind:LeftLayoutVoiceBinding):BaseHolder(bind.root){
     }
 
     private fun playVoice(message: Message){
-        var path :String?
+        val path :String?
         if (message.message.contains("http")){
             path = PathUtil.getAudioCachePath(bind.root.context,message.id)
             if (path == null)return
-            LocalCacheUtil.downloadFile(message.message!!,path!!,false,object : LocalCacheUtil.DownLoadCallback(){
+            LocalCacheUtil.downloadFile(message.message,path,false,object : LocalCacheUtil.DownLoadCallback(){
                 override fun done(e: Exception?) {
                     if (e == null){
-                        begin(path!!)
+                        begin(path)
                     }
                 }
             })

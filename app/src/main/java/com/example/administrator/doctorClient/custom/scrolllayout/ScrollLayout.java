@@ -107,7 +107,6 @@ public class ScrollLayout extends FrameLayout {
                 }
             };
 
-    private float lastX;
     private float lastY;
     private float lastDownX;
     private float lastDownY;
@@ -284,7 +283,7 @@ public class ScrollLayout extends FrameLayout {
         }
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                lastX = ev.getX();
+                float lastX = ev.getX();
                 lastY = ev.getY();
                 lastDownX = lastX;
                 lastDownY = lastY;
@@ -390,17 +389,12 @@ public class ScrollLayout extends FrameLayout {
         if (isSupportExit) {
             if (deltaY <= 0 && getScrollY() >= -minOffset) {
                 return true;
-            } else if (deltaY >= 0 && getScrollY() <= -exitOffset) {
-                return true;
-            }
+            } else return deltaY >= 0 && getScrollY() <= -exitOffset;
         } else {
             if (deltaY <= 0 && getScrollY() >= -minOffset) {
                 return true;
-            } else if (deltaY >= 0 && getScrollY() <= -maxOffset) {
-                return true;
-            }
+            } else return deltaY >= 0 && getScrollY() <= -maxOffset;
         }
-        return false;
     }
 
     private void completeMove() {

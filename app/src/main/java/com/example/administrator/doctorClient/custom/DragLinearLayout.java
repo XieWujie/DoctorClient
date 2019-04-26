@@ -18,8 +18,7 @@ public class DragLinearLayout extends LinearLayout {
 	
 	private int mLastY;
 	private int mCurY;
-	private int mYOffset;
- 
+
 	private Scroller mScroller;
 	private ViewConfiguration mViewConfiguration;
 	private int mTouchSlop;
@@ -86,7 +85,7 @@ public class DragLinearLayout extends LinearLayout {
 				Log.d("tag onTouchEvent","move");
  
 				mCurY = (int)ev.getY();
-				mYOffset = (int)((mCurY - mLastY)*RATIO);
+				int mYOffset = (int) ((mCurY - mLastY) * RATIO);
 				scrollBy(0,-mYOffset);//y负参数值下拉
 				mLastY = mCurY;
 				Log.d("getScrollY()",""+getScrollY());

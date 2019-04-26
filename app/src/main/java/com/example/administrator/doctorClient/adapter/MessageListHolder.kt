@@ -12,7 +12,7 @@ import com.example.administrator.doctorClient.view.ChatActivity
 
 class MessageListHolder(val binding: MessageItemBinding):BaseHolder(binding.root){
 
-    val owenrId = UserManage.user?.userId!!
+    private val owenrId = UserManage.user?.userId!!
     val a = 8*3600000
 
     override fun bind(any: Any) {

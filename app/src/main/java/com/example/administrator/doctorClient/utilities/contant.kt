@@ -7,12 +7,6 @@ const val USER_NAME = "username"
 
 const val USER_ID = "user_id"
 
-const val OTHER_NAME = "other_name"
-
-const val CONTACTS = "contacts"
-
-const val CONTACTS_LIST_ID = "contact_list_id"
-
 const val TEXT_MESSAGE = -1
 
 const val IMAGE_MESSAGE = -2
@@ -20,8 +14,6 @@ const val IMAGE_MESSAGE = -2
 const val UNKNOW_TYPE = -4
 
 const val VOICE_MESSAGE = -3
-
-const val VERIFY_MESSAGE = -10
 
 const val CONVERSATION_ID = "client_id"
 

@@ -17,5 +17,4 @@ class EvaluationModel(private val repository: EvaluationRepository):ViewModel(){
      fun getDoctorEvaluation(doctorId:String) =
         LivePagedListBuilder<Int,Evaluation>(repository.findDoctorEvaluation(doctorId),config).build()
 
-     fun getScore(doctorId: String) = repository.findScore(doctorId)
 }

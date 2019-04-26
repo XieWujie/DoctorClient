@@ -2,23 +2,22 @@ package com.example.administrator.doctorClient.view
 
 import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.administrator.doctorClient.databinding.FragmentStartBinding
-import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.MessageManage
 import com.example.administrator.doctorClient.core.UserManage
+import com.example.administrator.doctorClient.databinding.FragmentStartBinding
 import com.example.administrator.doctorClient.utilities.USER_NAME
 import com.example.administrator.doctorClient.utilities.ViewModelFactory
 import com.example.administrator.doctorClient.viewmodel.UserModel
@@ -28,7 +27,6 @@ import com.google.android.material.snackbar.Snackbar
 class StartFragment:Fragment(){
 
     private lateinit var binding :FragmentStartBinding
-    private lateinit var navController: NavController
     private lateinit var model:UserModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -78,7 +76,7 @@ class StartFragment:Fragment(){
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             toNext()
         } else {
             Snackbar.make(binding.root, "拒绝权限将不能正常使用该功能", Snackbar.LENGTH_LONG).show()
@@ -91,21 +89,25 @@ class StartFragment:Fragment(){
                 binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment)
             }
             else {
-                if (it.isLogout == true) {
-                    val bundle = Bundle()
-                    bundle.putString(USER_NAME, it.name)
-                    bundle.putString("password", it.password)
-                    binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment, bundle)
-                }else if (UserManage.user?.isLogout?:false == true){
-                    val user = UserManage.user!!
-                    val bundle = Bundle()
-                    bundle.putString(USER_NAME, user.name)
-                    bundle.putString("password", user.password)
-                    binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment, bundle)
-                } else {
-                    UserManage.user = it
-                    MessageManage.init(requireContext(), it)
-                    toMainActivity()
+                when {
+                    it.isLogout -> {
+                        val bundle = Bundle()
+                        bundle.putString(USER_NAME, it.name)
+                        bundle.putString("password", it.password)
+                        binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment, bundle)
+                    }
+                    UserManage.user?.isLogout == true -> {
+                        val user = UserManage.user!!
+                        val bundle = Bundle()
+                        bundle.putString(USER_NAME, user.name)
+                        bundle.putString("password", user.password)
+                        binding.root.findNavController().navigate(R.id.action_startFragment2_to_logInFragment, bundle)
+                    }
+                    else -> {
+                        UserManage.user = it
+                        MessageManage.init(requireContext(), it)
+                        toMainActivity()
+                    }
                 }
             }
         })?:toMainActivity()

@@ -56,7 +56,7 @@ class OrderItemHolder(private val binding:OrderListItemBinding):BaseHolder(bindi
                 intent.putExtra("order",any)
                 context.startActivity(intent)
             }
-            binding.cancel.setOnClickListener {
+            binding.cancel.setOnClickListener { it ->
                 when(binding.cancel.text){
                     "取消订单"->{
                         val dialog = Util.createProgressDialog(it.context)

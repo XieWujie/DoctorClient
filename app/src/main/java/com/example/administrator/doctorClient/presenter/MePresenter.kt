@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.example.administrator.doctorClient.data.user.User
 import com.example.administrator.doctorClient.utilities.CONVERSATION_ID
 import com.example.administrator.doctorClient.utilities.CONVERSATION__NAME
 import com.example.administrator.doctorClient.utilities.Util
@@ -23,10 +22,6 @@ class MePresenter{
 
     fun edit(view: View){
         Util.toActivity<EditListActivity>(view.context)
-    }
-
-    fun clickSafety(view: View){
-
     }
 
     fun clickCustomer(view: View){

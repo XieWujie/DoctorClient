@@ -32,7 +32,7 @@ import com.google.android.material.snackbar.Snackbar
 class ChatFragment : Fragment() {
 
     lateinit var binding: FragmentChatBinding
-    lateinit var model: MessageModel
+    private lateinit var model: MessageModel
     private val adapter = ChatAdapter()
     private var conversationName: String? = null
     private var conversationId: String? = null
@@ -49,7 +49,7 @@ class ChatFragment : Fragment() {
         return binding.root
     }
 
-    fun initView() {
+    private fun initView() {
         binding.chatRcView.layoutManager = LinearLayoutManager(requireContext())
         binding.chatRcView.adapter = adapter
     }
@@ -120,7 +120,7 @@ class ChatFragment : Fragment() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
-        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             when (requestCode) {
                 ButtomInput.TYPE_IMAGE -> dispatchPictureIntent()
             }
@@ -129,7 +129,7 @@ class ChatFragment : Fragment() {
         }
     }
 
-    fun sendImageMessage(uri: Uri?) {
+    private fun sendImageMessage(uri: Uri?) {
         if (uri != null) {
             val realPath = Util.getRealPathFromURI(requireContext(), uri)
             if (realPath != null) {

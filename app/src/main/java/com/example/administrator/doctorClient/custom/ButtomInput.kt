@@ -95,17 +95,13 @@ class ButtomInput: LinearLayout {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.isNullOrBlank()){
-                    binding.rightState.isSelected = false
-                }else{
-                    binding.rightState.isSelected = true
-                }
+                binding.rightState.isSelected = !s.isNullOrBlank()
             }
 
         })
     }
 
-    fun sendImage(){
+    private fun sendImage(){
         binding.image.setOnClickListener {
             listener?.onClick(TYPE_IMAGE)
         }

@@ -12,8 +12,6 @@ class EvaluationRepository private constructor(private val dao: EvaluationDao){
 
     fun findDoctorEvaluation(doctorId:String) = dao.findDoctorEvaluation(doctorId)
 
-    fun findScore(doctorId: String) = dao.findScore(doctorId)
-
     companion object {
         @Volatile
         private var instance: EvaluationRepository? = null

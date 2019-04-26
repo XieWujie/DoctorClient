@@ -2,7 +2,6 @@ package com.example.administrator.doctorClient.presenter
 
 import android.content.Intent
 import android.view.View
-import androidx.appcompat.widget.ViewUtils
 import com.example.administrator.doctorClient.utilities.AVATAR
 import com.example.administrator.doctorClient.utilities.USER_NAME
 import com.example.administrator.doctorClient.utilities.Util
@@ -47,7 +46,7 @@ class EditListPresenter{
         toEditItemActivity("goodAt",view)
     }
 
-    fun toEditItemActivity(key:String,view: View){
+    private fun toEditItemActivity(key:String, view: View){
         val context = view.context
         val intent = Intent(context,EditItemActivity::class.java)
         intent.putExtra("key",key)

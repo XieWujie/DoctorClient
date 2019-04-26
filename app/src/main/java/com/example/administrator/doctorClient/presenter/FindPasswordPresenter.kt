@@ -12,7 +12,7 @@ import com.example.administrator.doctorClient.view.StartActivity
 class FindPasswordPresenter(@Bindable var mailBox:String):BaseObservable(){
 
     fun find(view: View){
-        if (mailBox.isNullOrBlank()){
+        if (mailBox.isBlank()){
             Util.log(view,"邮箱不能为空")
         }
         AVUser.requestPasswordResetInBackground(mailBox,object :RequestPasswordResetCallback(){

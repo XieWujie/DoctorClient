@@ -14,16 +14,15 @@ class ChatAdapter:PagedListAdapter<Message,BaseHolder>(MessageDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val baseHolder:BaseHolder =  when(viewType){
-            TYPE_TEXT_RIGHT->RightTextHolder(RightLayoutTextBinding.inflate(inflater,parent,false))
-            TYPE_TEXT_LEFT->LeftTextHolder(LeftLayoutTextBinding.inflate(inflater,parent,false))
-            TYPE_IMAGE_RIGHT->RightImageHolder(RightLayoutImageBinding.inflate(inflater,parent,false))
-            TYPE_IMAGE_LEFT->LeftImageHolder(LeftLayoutImageBinding.inflate(inflater,parent,false))
-            TYPE_VOICE_RIGHT->RightVoiceHolder(RightVoiceLayoutBinding.inflate(inflater,parent,false))
-            TYPE_VOICE_LEFT->LeftVoiceHolder(LeftLayoutVoiceBinding.inflate(inflater,parent,false))
+        return when(viewType){
+            TYPE_TEXT_RIGHT ->RightTextHolder(RightLayoutTextBinding.inflate(inflater,parent,false))
+            TYPE_TEXT_LEFT ->LeftTextHolder(LeftLayoutTextBinding.inflate(inflater,parent,false))
+            TYPE_IMAGE_RIGHT ->RightImageHolder(RightLayoutImageBinding.inflate(inflater,parent,false))
+            TYPE_IMAGE_LEFT ->LeftImageHolder(LeftLayoutImageBinding.inflate(inflater,parent,false))
+            TYPE_VOICE_RIGHT ->RightVoiceHolder(RightVoiceLayoutBinding.inflate(inflater,parent,false))
+            TYPE_VOICE_LEFT ->LeftVoiceHolder(LeftLayoutVoiceBinding.inflate(inflater,parent,false))
             else ->throw Throwable("have not find this holder")
         }
-        return baseHolder
     }
 
     override fun onBindViewHolder(holder: BaseHolder, position: Int) {

@@ -1,23 +1,23 @@
 package com.example.administrator.doctorClient.view
 
 import android.Manifest
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.example.administrator.doctorClient.databinding.FragmentMeBinding
-import com.example.administrator.doctorClient.presenter.MePresenter
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.administrator.doctorClient.core.UserManage
+import com.example.administrator.doctorClient.databinding.FragmentMeBinding
+import com.example.administrator.doctorClient.presenter.MePresenter
 import com.example.administrator.doctorClient.utilities.Util
 
 
@@ -42,11 +42,11 @@ class MeFragment:Fragment(){
 
     override fun onStart() {
         super.onStart()
-        activity?.setTitle("我的")
+        activity?.title = "我的"
         val user = UserManage.user
         if (user != null) {
             binding.user = user
-            binding.isProve.text = if (user.doctorCertification == false) "未证明" else "已证明"
+            binding.isProve.text = if (!user.doctorCertification) "未证明" else "已证明"
         }
     }
 
@@ -60,7 +60,7 @@ class MeFragment:Fragment(){
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
-        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             when (requestCode) {
                 1 ->dispatchPictureIntent()
             }

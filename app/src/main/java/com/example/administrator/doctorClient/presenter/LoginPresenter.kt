@@ -20,10 +20,10 @@ class LoginPresenter(
     @Bindable var password:String
 ): BaseObservable() {
 
-    var progressDialog: Dialog? = null
+    private var progressDialog: Dialog? = null
     var activity: WeakReference<FragmentActivity>? = null
     fun login(view: View) {
-        if (userName.isNullOrBlank()) {
+        if (userName.isBlank()) {
             Snackbar.make(view, "用户名不能为空", Snackbar.LENGTH_LONG).show()
             return
         }

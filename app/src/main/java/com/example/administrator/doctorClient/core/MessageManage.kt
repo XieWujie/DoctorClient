@@ -1,7 +1,6 @@
 package com.example.administrator.doctorClient.core
 
 import android.content.Context
-import android.util.Log
 import com.avos.avoscloud.AVException
 import com.avos.avoscloud.AVObject
 import com.avos.avoscloud.GetCallback
@@ -16,7 +15,6 @@ import com.example.administrator.doctorClient.data.message.Message
 import com.example.administrator.doctorClient.data.message.MessageRepository
 import com.example.administrator.doctorClient.data.user.User
 import com.example.administrator.doctorClient.utilities.*
-import java.lang.Exception
 import java.util.*
 
 object MessageManage{
@@ -24,7 +22,7 @@ object MessageManage{
     var repository: MessageRepository? = null
     var client: AVIMClient? = null
     var owner:User? = null
-    var count:TempCountGet? = null
+    private var count:TempCountGet? = null
 
     private val avimMessageOption = AVIMMessageOption()
     private val conversationMap = HashMap<String, AVIMConversation>()
@@ -72,7 +70,7 @@ object MessageManage{
                         callback(null)
                         return@getClient
                     }
-                    val c = it!!.getConversation(id)
+                    val c = it.getConversation(id)
                     if (c.isShouldFetch){
                         c.fetchInfoInBackground(object :AVIMConversationCallback(){
                             override fun done(e: AVIMException?) {
@@ -123,7 +121,7 @@ object MessageManage{
         client?.createConversation(listOf(id), "ni", null, false, true, object : AVIMConversationCreatedCallback() {
             override fun done(c: AVIMConversation?, e: AVIMException?) {
                 if (e == null && c != null) {
-                    conversationMap[c!!.conversationId] = c!!
+                    conversationMap[c.conversationId] = c
                     if (c["Info"] == null) {
                         val map = mapOf(
                             getKey(owner!!.userId, USER_ID) to id,
@@ -203,12 +201,7 @@ object MessageManage{
     }
 
 
-    fun freshMessage() {
-        fetchNewMessage()
-    }
-
-
-    fun fetchNewMessage() {
+    private fun fetchNewMessage() {
         getClient { client->
             val query = client?.conversationsQuery
             query?.findInBackground(object : AVIMConversationQueryCallback() {
@@ -224,7 +217,7 @@ object MessageManage{
     }
 
 
-    fun getClient(getCallback:(client:AVIMClient?)->Unit){
+    private fun getClient(getCallback:(client:AVIMClient?)->Unit){
         if (owner !=null && client == null){
             client = AVIMClient.getInstance(owner!!.userId)
             client!!.open(object :AVIMClientCallback(){
@@ -350,7 +343,7 @@ object MessageManage{
         }
     }
 
-    fun getUserObjectById(userId:String,findCallback:(o:AVObject)->Unit){
+    private fun getUserObjectById(userId:String, findCallback:(o:AVObject)->Unit){
         val o = AVObject.createWithoutData("_User",userId)
         o.fetchInBackground(object :GetCallback<AVObject>(){
             override fun done(p0: AVObject?, p1: AVException?) {
@@ -372,10 +365,6 @@ object MessageManage{
         }
     }
 
-    fun deleteMessage(message: Message) {
-        repository?.delete(message)
-    }
-
     fun deleteMessages(conversationId: String) {
         repository?.delete(conversationId)
     }
@@ -390,6 +379,6 @@ object MessageManage{
         sendMessage(message.copy(id = getTempMessageId()),exception)
     }
 
-    fun getTempMessageId() = count?.get()?:"0"
+    private fun getTempMessageId() = count?.get()?:"0"
 
 }

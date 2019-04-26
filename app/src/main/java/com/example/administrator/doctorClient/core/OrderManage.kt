@@ -4,12 +4,9 @@ import android.content.Context
 import android.util.Log
 import com.avos.avoscloud.*
 import com.example.administrator.doctorClient.data.AppDatabase
-import com.example.administrator.doctorClient.data.doctor.Patient
 import com.example.administrator.doctorClient.data.order.Order
 import com.example.administrator.doctorClient.data.order.OrderRepository
-import com.example.administrator.doctorClient.data.user.User
 import com.example.administrator.doctorClient.utilities.NOT_EVALUATION
-import com.example.administrator.doctorClient.utilities.NOT_GENERATED
 import com.example.administrator.doctorClient.utilities.NOT_START
 import java.util.*
 
@@ -76,7 +73,7 @@ object OrderManage{
                 if (e == null){
                     val size = list!!.size
                     var count = 0
-                    list!!.forEach {
+                    list.forEach { it ->
                         count++
                         with(it) {
                             val patientId = getString("patientId")

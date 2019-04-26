@@ -96,7 +96,7 @@ class RecordText:TextView{
         mMediaRecorder = MediaRecorder()
         //创建录音文件,.m4a为MPEG-4音频标准的文件的扩展名
         mAudioFile = File(PathUtil.getRecordPathByCurrentTime(context))
-        mAudioFile!!.getParentFile().mkdirs()
+        mAudioFile!!.parentFile.mkdirs()
         try {
             //创建文件
             mAudioFile!!.createNewFile()
@@ -113,7 +113,7 @@ class RecordText:TextView{
                 //设置编码频率
                 setAudioEncodingBitRate(96000)
                 //设置录音保存的文件
-                setOutputFile(mAudioFile!!.getAbsolutePath())
+                setOutputFile(mAudioFile!!.absolutePath)
                 //开始录音
                 prepare()
                 start()
@@ -161,7 +161,7 @@ class RecordText:TextView{
 
     private fun sendVoiceMessage(path:String?,time:Double){
         if (id!=null && name!=null&&path!=null){
-            MessageManage.sendMessage(name!!,id!!, VOICE_MESSAGE,path,time.toDouble()){
+            MessageManage.sendMessage(name!!,id!!, VOICE_MESSAGE,path, time){
 
             }
         }

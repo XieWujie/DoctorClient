@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.utilities.Util
 import com.example.administrator.doctorClient.view.MainActivity
-import com.google.android.material.snackbar.Snackbar
 
 data class RegisterPresenter(
     @Bindable var userName:String = "",

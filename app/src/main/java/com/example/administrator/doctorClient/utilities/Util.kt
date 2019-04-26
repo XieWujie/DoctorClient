@@ -5,21 +5,16 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
-import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
-import com.avos.avoscloud.im.v2.AVIMConversation
 import com.example.administrator.doctorClient.R
-import com.example.administrator.doctorClient.core.UserManage
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
-import android.graphics.Color.parseColor
-import android.view.WindowManager
-import android.os.Build
-
 
 
 object Util{
@@ -57,48 +52,19 @@ object Util{
             return contentUri.encodedPath
         } else {
             var cursor: Cursor? = null
-            try {
+            return try {
                 val pro = arrayOf(MediaStore.Images.Media.DATA)
                 cursor = context.contentResolver.query(contentUri, pro, null, null, null)
                 if (null != cursor) {
                     val column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
                     cursor.moveToFirst()
-                    return cursor.getString(column_index)
+                    cursor.getString(column_index)
                 } else {
-                    return ""
+                    ""
                 }
             } finally {
                 cursor?.close()
             }
-        }
-    }
-
-    /**
-     * 弹出键盘
-     *
-     * @param context
-     * @param view
-     */
-    fun showSoftInput(context: Context, view: View?) {
-        if (view != null) {
-            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(view, 0)
-        }
-    }
-
-    fun findConversationTitle(c: AVIMConversation, fromName:String, findCallback:(title:String)->Unit){
-        val user = UserManage.user
-        val ownerName = user?.name
-        if (fromName == ownerName){
-            val m = c["Info"] as Map<String,String?>
-            val name = m[getKey(user.userId!!, OTHER_NAME)]
-            if (name !=null){
-                findCallback(name)
-            }else{
-                findCallback(fromName)
-            }
-        }else{
-            findCallback(fromName)
         }
     }
 

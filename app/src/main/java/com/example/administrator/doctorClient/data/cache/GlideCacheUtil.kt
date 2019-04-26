@@ -1,11 +1,11 @@
 package com.example.administrator.doctorClient.data.cache
 
 import android.content.Context
-import android.text.TextUtils
-import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
-import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory
-import com.bumptech.glide.Glide
 import android.os.Looper
+import android.text.TextUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.cache.ExternalCacheDiskCacheFactory
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import java.io.File
 import java.math.BigDecimal
 
@@ -15,7 +15,7 @@ object GlideCacheUtil {
     /**
      * 清除图片磁盘缓存
      */
-    fun clearImageDiskCache(context: Context,clearCallback:(e:Exception?)->Unit) {
+    private fun clearImageDiskCache(context: Context,clearCallback:(e:Exception?)->Unit) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) {
                 Thread(Runnable {
@@ -36,7 +36,7 @@ object GlideCacheUtil {
     /**
      * 清除图片内存缓存
      */
-    fun clearImageMemoryCache(context: Context) {
+    private fun clearImageMemoryCache(context: Context) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) { //只能在主线程执行
                 Glide.get(context).clearMemory()
@@ -53,8 +53,8 @@ object GlideCacheUtil {
     fun clearImageAllCache(context: Context,clearCallback:(e:Exception?)->Unit) {
         clearImageDiskCache(context,clearCallback)
         clearImageMemoryCache(context)
-        val ImageExternalCatchDir = context.externalCacheDir.absolutePath+ ExternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR
-        deleteFolderFile(ImageExternalCatchDir, true)
+        val imageExternalCatchDir = context.externalCacheDir.absolutePath+ ExternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR
+        deleteFolderFile(imageExternalCatchDir, true)
     }
 
     /**
@@ -64,7 +64,7 @@ object GlideCacheUtil {
      */
     fun getCacheSize(context: Context): String {
         try {
-            return getFormatSize(getFolderSize(File(context.getCacheDir().absolutePath + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)).toDouble())
+            return getFormatSize(getFolderSize(File(context.cacheDir.absolutePath + "/" + InternalCacheDiskCacheFactory.DEFAULT_DISK_CACHE_DIR)).toDouble())
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -85,10 +85,10 @@ object GlideCacheUtil {
         try {
             val fileList = file.listFiles()
             for (aFileList in fileList) {
-                if (aFileList.isDirectory()) {
-                    size = size + getFolderSize(aFileList)
+                size += if (aFileList.isDirectory) {
+                    getFolderSize(aFileList)
                 } else {
-                    size = size + aFileList.length()
+                    size + aFileList.length()
                 }
             }
         } catch (e: Exception) {
@@ -108,14 +108,14 @@ object GlideCacheUtil {
         if (!TextUtils.isEmpty(filePath)) {
             try {
                 val file = File(filePath)
-                if (file.isDirectory()) {
+                if (file.isDirectory) {
                     val files = file.listFiles()
                     for (file1 in files) {
-                        deleteFolderFile(file1.getAbsolutePath(), true)
+                        deleteFolderFile(file1.absolutePath, true)
                     }
                 }
                 if (deleteThisPath) {
-                    if (!file.isDirectory()) {
+                    if (!file.isDirectory) {
                         file.delete()
                     } else {
                         if (file.listFiles().size === 0) {

@@ -1,6 +1,5 @@
 package com.example.administrator.doctorClient.presenter
 
-import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -62,8 +61,8 @@ class SettingPresenter{
     fun logout(view: View){
         runOnNewThread {
             AppDatabase.getInstance(view.context).clearAllTables()
-            UserManage?.logout()
-            MessageManage?.logout()
+            UserManage.logout()
+            MessageManage.logout()
             Util.toActivity<StartActivity>(view.context)
         }
     }

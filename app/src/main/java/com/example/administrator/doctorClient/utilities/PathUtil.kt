@@ -8,20 +8,20 @@ import java.io.File
 object PathUtil{
     private fun isExternalStorageWritable(): Boolean {
         val state = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED.equals(state)
+        return Environment.MEDIA_MOUNTED == state
     }
 
 
     private fun getAvailableCacheDir(context: Context): File {
         return if (isExternalStorageWritable()) {
-            context.getExternalCacheDir()
+            context.externalCacheDir
         } else {
-            context.getCacheDir()
+            context.cacheDir
         }
     }
 
     fun getAudioCachePath(context: Context, id: String): String? {
-        return if (TextUtils.isEmpty(id)) null else File(getAvailableCacheDir(context), id).getAbsolutePath()
+        return if (TextUtils.isEmpty(id)) null else File(getAvailableCacheDir(context), id).absolutePath
     }
 
     fun getRecordPathByCurrentTime(context: Context): String {

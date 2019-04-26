@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.administrator.doctorClient.data.doctor.Patient
 import com.example.administrator.doctorClient.data.doctor.PatientDao
 import com.example.administrator.doctorClient.data.evaluation.Evaluation
@@ -33,7 +32,8 @@ abstract class AppDatabase:RoomDatabase(){
 
     companion object {
 
-        private @Volatile var instance:AppDatabase? = null
+        @Volatile
+        private var instance:AppDatabase? = null
 
         fun getInstance(context: Context):AppDatabase{
             return instance?: synchronized(this){
@@ -43,9 +43,6 @@ abstract class AppDatabase:RoomDatabase(){
         private fun buildInstance(context: Context):AppDatabase{
             return Room.databaseBuilder(context,AppDatabase::class.java, DATABASE_NAME)
                 .addCallback(object :RoomDatabase.Callback(){
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                    }
                 }).allowMainThreadQueries()
                 .build()
         }

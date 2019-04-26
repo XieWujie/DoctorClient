@@ -1,8 +1,6 @@
 package com.example.administrator.doctorClient.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -16,7 +14,7 @@ class SettingActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivitySettingBinding>(this,R.layout.activity_setting)
-        setTitle("设置")
+        title = "设置"
        setActionBar(binding.toolbar)
         navController = findNavController(R.id.setting_nav)
     }

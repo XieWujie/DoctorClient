@@ -19,9 +19,7 @@ class OrderScheduleView:View{
     private var state = -1
     private var timeList= ArrayList<String>()
 
-    constructor(context: Context):super(context){
-
-    }
+    constructor(context: Context):super(context)
 
     constructor(context: Context,attributeSet: AttributeSet):super(context,attributeSet){
         initPaint()
@@ -49,7 +47,7 @@ class OrderScheduleView:View{
         setMeasuredDimension(width,width)
     }
 
-    fun initPaint(){
+    private fun initPaint(){
         leftTextPaint.color = Color.BLACK
         leftTextPaint.textAlign = Paint.Align.RIGHT
         leftTextPaint.textSize = dpToPx(16)
@@ -98,7 +96,7 @@ class OrderScheduleView:View{
     }
 
     private fun drawBar(canvas: Canvas,beginX: Float,beginY: Float,oneY: Float){
-        var startY = beginY-dpToPx(4)
+        val startY = beginY-dpToPx(4)
         val y = startY + oneY*state
         canvas.drawLine(beginX,startY,beginX,y,redBarPaint)
         canvas.drawLine(beginX,y,beginX,startY+oneY*4,grayBarPaint)

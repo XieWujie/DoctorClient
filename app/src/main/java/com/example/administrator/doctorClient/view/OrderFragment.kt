@@ -19,9 +19,9 @@ import com.example.administrator.doctorClient.utilities.Util
 class OrderFragment : Fragment(), ViewPager.OnPageChangeListener{
 
     lateinit var binding: FragmentOrderBinding
-    var displayWidth = 0
+    private var displayWidth = 0
     var width = 0
-    var leftMargin = 0
+    private var leftMargin = 0
     private lateinit var layoutParams: LinearLayout.LayoutParams
 
 
@@ -54,8 +54,8 @@ class OrderFragment : Fragment(), ViewPager.OnPageChangeListener{
         }
     }
 
-    fun initUI(){
-        activity?.setTitle("订单")
+    private fun initUI(){
+        activity?.title = "订单"
         val ownerId = UserManage.user?.userId
         if (ownerId == null){
             Util.log(activity!!.window.decorView,"请先登陆")

@@ -57,9 +57,9 @@ class PositionActivity : BaseActivity(),SearchView.OnQueryTextListener{
                }
            }
        })
-       binding.save.setOnClickListener {
+       binding.save.setOnClickListener { it ->
            val description = binding.search.query.toString()
-           if (description.isNullOrBlank()){
+           if (description.isBlank()){
                Util.log(binding.root,"请添加评论")
            }else {
                UserManage.updatePosition(this, position.copy(description = description)){
@@ -130,7 +130,7 @@ class PositionActivity : BaseActivity(),SearchView.OnQueryTextListener{
         manualQuery(districtSearch,query,builder)
     }
 
-    fun manualQuery(districtSearch: DistrictSearch,query: DistrictSearchQuery,builder:AlertDialog.Builder){
+    private fun manualQuery(districtSearch: DistrictSearch, query: DistrictSearchQuery, builder:AlertDialog.Builder){
         districtSearch.setOnDistrictSearchListener { result ->
             val d = result.district[0]
             val a = d.subDistrict.map { it.name }.toTypedArray()
@@ -143,7 +143,7 @@ class PositionActivity : BaseActivity(),SearchView.OnQueryTextListener{
                 "street" -> position.copy(streetNumber = name,latitude = d.center.latitude,longitude = d.center.longitude)
                 else -> position
             }
-            if (a.size > 0) {
+            if (a.isNotEmpty()) {
                 builder.setItems(a) { d, p ->
                     query.keywords = a[p]
                     manualQuery(districtSearch, query, builder)

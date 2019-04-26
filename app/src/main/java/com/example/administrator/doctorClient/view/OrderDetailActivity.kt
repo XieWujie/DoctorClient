@@ -1,16 +1,10 @@
 package com.example.administrator.doctorClient.view
 
-import android.app.ActionBar
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import androidx.databinding.DataBindingUtil
 import com.example.administrator.doctorClient.R
 import com.example.administrator.doctorClient.core.OrderManage
@@ -26,9 +20,9 @@ class OrderDetailActivity : BaseActivity() {
 
     private lateinit var binding:ActivityOrderDetailBinding
     private var menu: Menu? = null
-    val AGREE = 1
-    val DISAGREE = 2
-    val CONFIRM = 3
+    private val AGREE = 1
+    private val DISAGREE = 2
+    private val CONFIRM = 3
     private var order:Order? = null
 
 
@@ -47,7 +41,7 @@ class OrderDetailActivity : BaseActivity() {
             binding.order = newOrder
             initSchedule(newOrder)
         }
-        setTitle("订单详情")
+        title = "订单详情"
     }
 
     private fun initSchedule(order: Order){

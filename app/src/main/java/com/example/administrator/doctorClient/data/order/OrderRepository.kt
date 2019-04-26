@@ -7,8 +7,6 @@ class OrderRepository private constructor(private val orderDao: OrderDao){
 
     fun getOwnerOrder(ownerId:String) = orderDao.getOwnerOrder(ownerId)
 
-    fun getDoctorOrder(doctorId:String,startTime:Long) = orderDao.getDoctorOrder(doctorId,startTime)
-
     fun getTypeOrder(ownerId: String,type:Int) = orderDao.getTypeOrder(ownerId,type)
 
     fun getStartOrder(ownerId: String,time:Long) = orderDao.getStartOrder(ownerId,time)
@@ -18,12 +16,6 @@ class OrderRepository private constructor(private val orderDao: OrderDao){
     fun delete(order: Order){
         runOnNewThread {
             orderDao.delete(order)
-        }
-    }
-
-    fun addOrders(list: List<Order>){
-        runOnNewThread {
-            orderDao.insert(list)
         }
     }
 

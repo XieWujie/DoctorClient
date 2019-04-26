@@ -5,6 +5,7 @@ import com.avos.avoscloud.im.v2.AVIMMessageField;
 import com.avos.avoscloud.im.v2.AVIMMessageType;
 import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 
+@SuppressWarnings("unchecked")
 @AVIMMessageType(
         type = 10
 )

@@ -48,7 +48,7 @@ class ViewAdapter{
 
 
         const val a = 3600000
-        var lastTime = 0L
+        private var lastTime = 0L
         @JvmStatic
         @BindingAdapter("time")
         fun setTime(view: TextView, timeStamp:Long){

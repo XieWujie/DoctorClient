@@ -2,7 +2,6 @@ package com.example.administrator.doctorClient.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amap.api.services.help.Tip
 import com.example.administrator.doctorClient.databinding.SearchItemBinding

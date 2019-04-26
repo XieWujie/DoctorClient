@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.administrator.doctorClient.adapter.MessageListAdapter
-import com.example.administrator.doctorClient.core.MessageManage
 import com.example.administrator.doctorClient.core.UserManage
 import com.example.administrator.doctorClient.databinding.FragmentMessageListBinding
 import com.example.administrator.doctorClient.utilities.ViewModelFactory
@@ -50,6 +49,6 @@ class MessageListFragment:Fragment(){
 
     override fun onStart() {
         super.onStart()
-        activity?.setTitle("消息")
+        activity?.title = "消息"
     }
 }

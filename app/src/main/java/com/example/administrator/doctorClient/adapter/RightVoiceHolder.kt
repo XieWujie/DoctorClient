@@ -53,10 +53,10 @@ class RightVoiceHolder(val bind:RightVoiceLayoutBinding):BaseHolder(bind.root){
                 begin(message.message)
                 return
             }
-            LocalCacheUtil.downloadFile(message.message!!,path!!,false,object : LocalCacheUtil.DownLoadCallback(){
+            LocalCacheUtil.downloadFile(message.message, path,false,object : LocalCacheUtil.DownLoadCallback(){
                 override fun done(e: Exception?) {
                     if (e == null){
-                        begin(path!!)
+                        begin(path)
                     }else{
                         e.printStackTrace()
                         Snackbar.make(bind.root,"语音加载失败",Snackbar.LENGTH_LONG).show()

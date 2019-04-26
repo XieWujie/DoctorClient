@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.annotation.NonNull
@@ -59,7 +58,7 @@ class ProveActivity : BaseActivity() {
                     if (e == null){
                         finish()
                     }else{
-                        Util.log(binding.root,e!!.message)
+                        Util.log(binding.root, e.message)
                     }
                 }
             }
@@ -75,7 +74,7 @@ class ProveActivity : BaseActivity() {
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
-        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
            dispatchPictureIntent()
         }else {
             Util.log(binding.root, "拒绝权限将不能正常使用该功能")

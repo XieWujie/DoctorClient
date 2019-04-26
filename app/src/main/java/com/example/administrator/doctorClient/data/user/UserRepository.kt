@@ -22,14 +22,6 @@ class UserRepository private constructor(private val userDao: UserDao) {
         }
     }
 
-    fun deleteUser(user: User) {
-        runOnNewThread {
-            userDao.deleteUser(user)
-        }
-    }
-
-    fun getUserById(id: String) = userDao.getUserById(id)
-
     companion object {
 
         @Volatile

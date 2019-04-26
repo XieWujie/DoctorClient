@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class BaseHolder(val view:View):RecyclerView.ViewHolder(view){
 
     protected var listenter:Event? = null
-    protected val context = view.context
+    protected val context = view.context!!
 
     abstract fun bind(any:Any)
 

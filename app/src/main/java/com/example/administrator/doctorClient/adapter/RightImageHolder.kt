@@ -58,7 +58,7 @@ class RightImageHolder(val bind:RightLayoutImageBinding):BaseHolder(bind.root) {
         val view = ImageView(bind.root.context)
         Glide.with(bind.root).load(src).into(view)
         dialog.setContentView(view, p)
-        val window = dialog?.window
+        val window = dialog.window
         window?.setGravity(Gravity.CENTER)
         val layoutParams = window?.attributes
         val displayMetrics = bind.root.resources.displayMetrics

@@ -32,7 +32,7 @@ object UserManage{
                     c.open(object : AVIMClientCallback(){
                         override fun done(c: AVIMClient?, e: AVIMException?) {
                             if (e==null){
-                                getUser(password,a!!){u->
+                                getUser(password, a){ u->
                                     user = u
                                     respository?.addUser(u)
                                     loginCallback(user)
@@ -46,7 +46,7 @@ object UserManage{
                     })
 
                 }else{
-                    Util.log(view,e?.message)
+                    Util.log(view, e.message)
                     loginCallback(null)
                 }
             }

@@ -16,8 +16,6 @@ class OrderModel internal constructor(private val respository:OrderRepository):V
 
     fun getOwnerOrder(ownerId:String) = LivePagedListBuilder<Int,Order>(respository.getOwnerOrder(ownerId),config).build()
 
-    fun getDoctorOrder(doctorId:String,startTime:Long) = LivePagedListBuilder<Int,Order>(respository.getDoctorOrder(doctorId,startTime),config).build()
-
     fun getTypeOrder(ownerId: String,type:Int) = LivePagedListBuilder<Int,Order>(respository.getTypeOrder(ownerId,type),config).build()
 
     fun getStartOrder(ownerId: String,time:Long) = LivePagedListBuilder<Int,Order>(respository.getStartOrder(ownerId,time),config).build()
