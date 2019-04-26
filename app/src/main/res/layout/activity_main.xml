@@ -8,7 +8,8 @@
   <RelativeLayout android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-      <androidx.appcompat.widget.Toolbar style="@style/toolbar_style" android:id="@+id/toolbar">
+      <androidx.appcompat.widget.Toolbar style="@style/toolbar_style"
+                                         android:id="@+id/toolbar">
 
       </androidx.appcompat.widget.Toolbar>
       <fragment

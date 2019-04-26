@@ -10,6 +10,7 @@
 
     <style name="toolbar_style" parent="Theme.AppCompat.NoActionBar">
         <item name="android:layout_width">match_parent</item>
+        <item name="colorControlNormal">#ffffff</item>
         <item name="android:background">@color/blue_toolbar</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
     </style>

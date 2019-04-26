@@ -3,6 +3,7 @@ package com.example.administrator.doctorClient.view
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController

@@ -77,9 +77,9 @@ class MeFragment:Fragment(){
         startActivityForResult(photoPickerIntent, 1)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (Activity.RESULT_OK == resultCode) {
-            if (data.data!=null){
+            if (data?.data!=null){
                 initAvatar(data.data)
             }
         }
@@ -94,6 +94,7 @@ class MeFragment:Fragment(){
         }else {
             UserManage.setAvatar(requireContext(),realPath) {
                 if (it == null){
+                    Glide.with(this@MeFragment).load(realPath).into(binding.avatar)
                     Util.log(binding.root,"头像更新成功")
                 }else{
                     Util.log(binding.root,it.message)

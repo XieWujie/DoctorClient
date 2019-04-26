@@ -12,6 +12,7 @@ import com.example.administrator.doctorClient.data.user.User
 import com.example.administrator.doctorClient.data.user.UserRepository
 import com.example.administrator.doctorClient.utilities.AVATAR
 import com.example.administrator.doctorClient.utilities.Util
+import com.example.administrator.doctorClient.utilities.runOnNewThread
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.Exception
@@ -238,39 +239,33 @@ object UserManage{
 
     fun prove(context: Context,prove1:String,prove2:String,prove3:String,proveCallback:(e:Exception?)->Unit){
         initRespository(context)
-        val c = CountDownLatch(3)
         val o = AVObject.createWithoutData("_User", user!!.userId)
-        save("prove1",prove1,o,c)
-        save("prove2",prove2,o,c)
-        save("prove3",prove3,o,c)
-        try {
-            c.await(30,TimeUnit.SECONDS)
-            o.put("doctorCertification",true)
-            o.put("authentication",true)
-            o.saveInBackground(object :SaveCallback(){
-                override fun done(e: AVException?) {
-                    if (e == null){
-                        user = user!!.copy(authentication = true,doctorCertification = true)
-                        respository?.addUser(user!!)
+        runOnNewThread {
+            save("prove1",prove1,o)
+            save("prove2",prove2,o)
+            save("prove3",prove3,o)
+            try {
+                o.put("doctorCertification",true)
+                o.put("authentication",true)
+                o.saveInBackground(object :SaveCallback(){
+                    override fun done(e: AVException?) {
+                        if (e == null){
+                            user = user!!.copy(authentication = true,doctorCertification = true)
+                            respository?.addUser(user!!)
+                        }
+                        proveCallback(e)
                     }
-                    proveCallback(e)
-                }
-            })
-        }catch (e:InterruptedException){
-            proveCallback(e)
+                })
+            }catch (e:InterruptedException){
+                proveCallback(e)
+            }
         }
     }
 
-    private fun save(key: String,value:String, o: AVObject,c:CountDownLatch){
+
+    private fun save(key: String,value:String, o: AVObject){
         val avFile = AVFile.withAbsoluteLocalPath("$key.jpg",value)
-        avFile.saveInBackground(object :SaveCallback(){
-            override fun done(e: AVException?) {
-                if (e == null){
-                   o.put(key,avFile.url)
-                    c.countDown()
-                }
-            }
-        })
+        avFile.save()
     }
 
     fun logout(){
